@@ -6,13 +6,6 @@ export type DeleteTransactionProps = {
 };
 
 export function DeleteTransaction({ itemId }: DeleteTransactionProps) {
-  // const dataContext = useContext(DataContext);
-  // const modalsContext = useContext(ModalsContext);
-
-  // const transactionModal = modalsContext.data.find((modal) => modal.id === 'transaction');
-
-  // const transactions = dataContext.transactions;
-
   return (
     <div>
       <div className="tooltip" data-tip="Deletar Transação">

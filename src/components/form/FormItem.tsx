@@ -1,13 +1,12 @@
-import { cn } from "@/lib/utils";
+import { FieldError } from "react-hook-form";
 
 export type InputProps = {
   name: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export type FormItemProps = {
-  name: string;
   label?: string;
-  error?: boolean;
+  error?: FieldError;
 } & React.PropsWithChildren;
 
 export const inputStyles =
@@ -15,15 +14,13 @@ export const inputStyles =
 
 export function FormItem({ error, label, children }: FormItemProps) {
   return (
-    <label className="form-control w-full max-w-xs">
+    <label className="form-control w-full">
       <div className="label">
         <span className="label-text">{label}</span>
       </div>
       {children}
       <label className="label">
-        {error && (
-          <span className="label-text-alt">Este campo é obrigatório</span>
-        )}
+        {error && <span className="label-text-alt">{error.message}</span>}
       </label>
     </label>
   );

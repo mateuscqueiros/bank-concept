@@ -10,6 +10,7 @@ type ContainerProps = {
 
 export function Container({ children }: ContainerProps) {
   const [opened, setOpened] = useState(false);
+  console.log("container render");
 
   return (
     <div className="flex flex-col md:flex-row relative">

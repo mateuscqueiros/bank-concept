@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout";
 import "./globals.css";
 import type { Metadata } from "next";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
 export const metadata: Metadata = {
   title: "BNB",
