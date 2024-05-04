@@ -1,12 +1,20 @@
-import { create, createStore } from "zustand";
-import { createContext } from "react";
+// https://docs.pmnd.rs/zustand/guides/initialize-state-with-props#basic-component-usage
+import { create } from "zustand";
+import { createSelectors } from "./utils";
 
-type ModalStateType = {
+type ModalProps = {
   name: string;
   open: boolean;
 };
 
-const DEFAULT_PROPS: ModalStateType[] = [
+interface ModalStoreType {
+  modals: ModalProps[];
+  openModal: (modalName: string) => void;
+  closeModal: (modalName: string) => void;
+  toggleModal: (modalName: string) => void;
+}
+
+const DEFAULT_PROPS: ModalProps[] = [
   {
     name: "createTransaction",
     open: false,
@@ -25,50 +33,42 @@ const DEFAULT_PROPS: ModalStateType[] = [
   },
 ];
 
-type ModalsStoreType = {
-  modals: ModalStateType[];
-  openModal: (modalName: string) => void;
-  closeModal: (modalName: string) => void;
-};
-
-create<ModalsStoreType>((set) => ({
+export const useModalStoreBase = create<ModalStoreType>()((set) => ({
   modals: DEFAULT_PROPS,
   openModal: (modalName) =>
     set((state) => {
-      const modalToOpen = state.modals.find(
-        (modal) => modal.name === modalName,
+      const otherModals = state.modals.filter(
+        (modal) => modal.name !== modalName,
       );
-      if (modalToOpen) {
-        const otherModals = state.modals.filter(
-          (modal) => modal.name !== modalName,
-        );
-        return {
-          ...state,
-          modals: [...otherModals, { name: modalName, open: true }],
-        };
-      } else {
-        console.log("Modal not found");
-        return state;
-      }
+      return {
+        ...state,
+        modals: [...otherModals, { name: modalName, open: true }],
+      };
     }),
   closeModal: (modalName) =>
     set((state) => {
-      const modalToClose = state.modals.find(
-        (modal) => modal.name === modalName,
+      const otherModals = state.modals.filter(
+        (modal) => modal.name !== modalName,
       );
-      if (modalToClose) {
-        const otherModals = state.modals.filter(
-          (modal) => modal.name !== modalName,
-        );
-        return {
-          ...state,
-          modals: [...otherModals, { name: modalName, open: false }],
-        };
-      } else {
-        console.log("Modal not found");
-        return state;
-      }
+      return {
+        ...state,
+        modals: [...otherModals, { name: modalName, open: false }],
+      };
+    }),
+  toggleModal: (modalName) =>
+    set((state) => {
+      const thisModal = state.modals.find((modal) => modal.name === modalName);
+      const otherModals = state.modals.filter(
+        (modal) => modal.name !== modalName,
+      );
+      return {
+        ...state,
+        modals: [
+          ...otherModals,
+          { name: modalName, open: thisModal ? !thisModal?.open : false },
+        ],
+      };
     }),
 }));
 
-export const ModalsContext = createContext<ModalsStoreType | null>(null);
+export const useModalStore = createSelectors(useModalStoreBase);
