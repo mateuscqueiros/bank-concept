@@ -1,33 +1,33 @@
 import { cn } from "@/lib/utils";
 import { CategoryType } from "../types";
-import { useContext } from "react";
 import { getCategoryIcon, getCategoryItems } from "../lib";
 import { Button, Progress } from "@/components/elements";
+import { useCategoryStore, useModalStore, useTransactionStore } from "@/stores";
 
 type CategoryProps = {
   totalExpenses: number;
-} & CategoryType;
+  data: CategoryType;
+};
 
-function Category({ color, id, name, icon, totalExpenses }: CategoryProps) {
-  // const dataContext = useContext(DataContext);
-  // const modalsContext = useContext(ModalsContext);
+function Category({ data, totalExpenses }: CategoryProps) {
+  const openUpdate = useModalStore.use.openUpdate();
 
-  //const transactions = dataContext.transactions.data;
-  const transactions: any[] = [];
-  const category = { id, name, color, icon };
+  const transactions = useTransactionStore.use.transactions();
+  const icon = getCategoryIcon(data.icon);
 
-  const categoryTransactions = getCategoryItems(id, transactions);
+  const categoryTransactions = getCategoryItems(data.id, transactions);
   const totalCategoryExpenses = categoryTransactions.reduce(
     (acc: any, transaction: any) => transaction.value + acc,
     0,
   );
 
   return (
-    <div className={cn([`flex flex-row mb-3 cursor-pointer`, color])}>
-      {/*onClick={() => modalsContext.openUpdate("category", category)}*/}
-      {/*getCategoryIcon(icon, dataContext.categories.data)*/}
-      {getCategoryIcon(icon)}
-      <span className="ml-4 font-medium w-20 text-text">{name}</span>
+    <div
+      className={cn([`flex flex-row mb-3 cursor-pointer`, data.color])}
+      onClick={() => openUpdate("categoryUpdate", data.id)}
+    >
+      {icon}
+      <span className="ml-4 font-medium w-20 text-text">{data.name}</span>
       <span className="font-medium">
         {Math.round((totalCategoryExpenses / totalExpenses) * 100)} %
       </span>
@@ -35,12 +35,9 @@ function Category({ color, id, name, icon, totalExpenses }: CategoryProps) {
   );
 }
 
-export function CategoriesProgress({ className }: { className?: string }) {
-  // const dataContext = useContext(DataContext);
-  // const transactions = dataContext.transactions.data;
-  // const categories = dataContext.categories.data;
-  const transactions: any[] = [];
-  const categories: any[] = [];
+export function CategoriesProgress() {
+  const transactions = useTransactionStore.use.transactions();
+  const categories = useCategoryStore.use.categories();
 
   let totalExpenses = transactions.reduce(
     (acc, transaction) => transaction.value + acc,
@@ -52,8 +49,8 @@ export function CategoriesProgress({ className }: { className?: string }) {
   const expensesCategories = categories.map((category) => (
     <Category
       key={`category-item-${category.id}`}
-      {...category}
       totalExpenses={totalExpenses}
+      data={category}
     />
   ));
 

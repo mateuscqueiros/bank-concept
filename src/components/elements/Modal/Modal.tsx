@@ -1,10 +1,8 @@
 "use client";
 
-import { useClickOutside } from "@/hooks/use-click-outside";
 import { cn } from "@/lib/utils";
 import { useModalStore } from "@/stores";
 import { IconX } from "@tabler/icons-react";
-import { useRef } from "react";
 
 type ModalProps = {
   name: string;
@@ -14,7 +12,7 @@ type ModalProps = {
 export function Modal({ name, title, children }: ModalProps) {
   const modals = useModalStore.use.modals();
   const thisModal = modals.find((modal) => modal.name === name);
-  const closeModal = useModalStore((state) => state.closeModal);
+  const closeModal = useModalStore((state) => state.close);
 
   return (
     <div

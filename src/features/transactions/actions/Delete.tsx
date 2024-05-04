@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { IconTrash } from "@tabler/icons-react";
 
 export type DeleteTransactionProps = {
   itemId: string;
 };
 
-export function DeleteTransaction({ itemId }: DeleteTransactionProps) {
+export function DeleteTransaction({}: DeleteTransactionProps) {
   return (
     <div>
       <div className="tooltip" data-tip="Deletar Transação">

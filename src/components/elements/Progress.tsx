@@ -2,13 +2,8 @@
 
 import { CategoryType, getCategoryItems } from "@/features/categories";
 import { TransactionType } from "@/features/transactions";
-import { cn } from "@/lib/utils";
-import { useContext, useLayoutEffect, useRef, useState } from "react";
-
-type ProgressSection = {
-  color: string;
-  value: number;
-};
+import { useTransactionStore } from "@/stores";
+import { useLayoutEffect, useRef, useState } from "react";
 
 type ProgressProps = {
   categories: CategoryType[];
@@ -16,9 +11,7 @@ type ProgressProps = {
 
 export function Progress({ categories }: ProgressProps) {
   let accSectionsHeight = 0;
-  //const dataContext = useContext(DataContext);
-  //const transactions = dataContext.transactions.data;
-  const transactions: any[] = [];
+  const transactions = useTransactionStore.use.transactions();
 
   const totalExpenses = transactions.reduce(
     (acc: number, item: TransactionType) => acc + item.value,

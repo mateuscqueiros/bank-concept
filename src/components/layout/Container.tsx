@@ -9,13 +9,12 @@ type ContainerProps = {
 };
 
 export function Container({ children }: ContainerProps) {
-  const [opened, setOpened] = useState(false);
-  console.log("container render");
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
     <div className="flex flex-col md:flex-row relative">
-      <Navbar opened={opened} setOpened={setOpened} />
-      <Header setOpened={setOpened} />
+      <Navbar opened={navbarOpen} setOpened={setNavbarOpen} />
+      <Header setOpened={setNavbarOpen} />
       <main className="max-w-[1600px] md:pl-[300px] w-full min-h-screen mx-auto">
         {children}
       </main>

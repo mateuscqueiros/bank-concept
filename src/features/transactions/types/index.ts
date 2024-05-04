@@ -6,19 +6,19 @@ export type TransactionType = {
   value: number;
   date: Date;
   categoryId: number;
-  type: string;
+  paymentType: number;
 };
 
 export const transactionSchema = z.object({
-  title: z.string().min(1, { message: 'O título é obrigatório' }),
-  value: z.number({ message: 'Digite um valor válido' }).gte(1, { message: 'O valor é obrigatório' }),
-  date: z.coerce.date({
+  name: z.string().min(1, { message: 'O nome é obrigatório' }),
+  value: z.number({ message: 'Digite um valor válido' }).gte(1, { message: 'O valor deve ser maior que zero' }),
+  date: z.date({
     errorMap: (issue, { defaultError }) => ({
       message: issue.code === "invalid_date" ? "Insira uma data válida" : defaultError,
     }),
   }),
   categoryId: z.number({ message: 'A categoria é obrigatória' }),
-  type: z.number({ message: 'O tipo é obrigatório' })
+  paymentType: z.number({ message: 'O tipo é obrigatório' })
 }).required();
 
 export type TransactionFormType = z.infer<typeof transactionSchema>;

@@ -1,20 +1,17 @@
+import { useModalStore } from "@/stores";
 import { IconCategoryPlus } from "@tabler/icons-react";
-import { useContext } from "react";
 
 export function AddCategory() {
-  // const modalsContext = useContext(ModalsContext);
-  /* const categoryModal = modalsContext.data.find(
-    (modal) => modal.id === "category",
-  );*/
+  const openModal = useModalStore.use.open();
 
   return (
     <div>
-      <div className="tooltip tooltip-left" data-tip="Adicionar transação">
+      <div className="tooltip tooltip-left" data-tip="Adicionar categoria">
         <button
           type="button"
           className="btn-sm bg-primary rounded-md p-1 text-white hover:bg-tertiary"
+          onClick={() => openModal("createCategory")}
         >
-          {/*onClick={() => categoryModal?.open()}*/}
           <IconCategoryPlus />
         </button>
       </div>

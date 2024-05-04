@@ -1,27 +1,27 @@
-// import { getCategoryById, getCategoryIcon } from '@/lib/categories';
-// import { DataContext, ModalsContext } from '@/providers';
-import { getCategoryById } from "@/features/categories";
+import { getCategoryIcon } from "@/features/categories";
 import { TransactionType } from "../types";
 import { format } from "date-fns";
-import { useContext } from "react";
+import { useCategoryStore, useModalStore } from "@/stores";
 
 type TransactionItemProps = {
   data: TransactionType;
 };
 
 export function TransactionItem({ data }: TransactionItemProps) {
-  // const modalsContext = useContext(ModalsContext);
-  // const dataContext = useContext(DataContext);
-  const categories: any[] = [];
-  const category = getCategoryById(data.categoryId, categories);
+  const categories = useCategoryStore.use.categories();
+  const category = categories.find((c) => c.id === data.categoryId);
+
+  const openUpdate = useModalStore.use.openUpdate();
 
   return (
-    <div className="relative flex flex-row flex-wrap w-full items-center justify-between">
-      {/*onClick={() => modalsContext.openUpdate('transaction', data)}*/}
+    <div
+      className="relative flex flex-row flex-wrap w-full items-center justify-between"
+      onClick={() => openUpdate("updateTransaction", data.id)}
+    >
       <div className="absolute left-0 w-[50px] h-full flex items-center">
         <div className="flex flex-row items-center justify-center bg-tertiary w-[40px] h-[40px] rounded-full">
           <div className="w-[24px] h-[24px] text-white">
-            {/*getCategoryIcon(category?.icon || '')*/}
+            {getCategoryIcon(category?.icon || "")}
           </div>
         </div>
       </div>

@@ -1,8 +1,20 @@
+/*
+ * TODO:
+ * - Remover duplicação dos botões Saiba mais da home
+ * - Criar formulário das categorias
+ * - Criar foto da Home
+ */
+"use client";
+
 import { Button, CreditCard } from "@/components/elements";
-import { useModalStore } from "@/stores";
+import { HomeInfoSection } from "@/components/layout";
+import { TransactionList } from "@/features/transactions";
+import { useTransactionStore } from "@/stores";
 import { IconArrowRight, IconInfoCircle } from "@tabler/icons-react";
 
 export default function Home() {
+  const transactions = useTransactionStore.use.transactions();
+
   return (
     <div className="flex flex-row w-full xl:max-w-[calc(50%-60px)]">
       <div className="flex flex-col flex-1 p-6 pt-10 h-full">
@@ -50,15 +62,15 @@ export default function Home() {
           </div>
         </div>
         <div className="block mt-10 xl:hidden ">
-          {/* <HomeInfoSection search={search} setSearch={setSearch} />*/}
+          <HomeInfoSection />
         </div>
         <div className="mt-10">
-          {/*<TransactionList title="Transações recentes" items={transactions} />*/}
+          <TransactionList title="Transações recentes" items={transactions} />
         </div>
       </div>
       <div className="bg-contrast fixed w-[20%] xl:w-[calc(50%-100px)] right-0 flex-1 h-screen py-10 px-20 hidden xl:block">
         <div className="max-w-[500px]">
-          {/*<HomeInfoSection search={search} setSearch={setSearch} />*/}
+          <HomeInfoSection />
         </div>
       </div>
     </div>

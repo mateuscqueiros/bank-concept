@@ -1,8 +1,8 @@
 import { CategoryType } from "@/features/categories";
-import { TransactionType } from "@/features/transactions";
+import { TransactionFormType, TransactionType } from "@/features/transactions";
 import { uuid } from "@/lib/utils";
 
-export const categories: CategoryType[] = [
+export const DEFAULT_CATEGORY_VALUES: CategoryType[] = [
   {
     id: 0,
     icon: "icon-car",
@@ -29,14 +29,14 @@ export const categories: CategoryType[] = [
   },
 ];
 
-export const transactions: TransactionType[] = [
+export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
   {
     id: uuid(),
     name: "Conserto do Carro",
     date: new Date("01/02/2023"),
     value: 200,
     categoryId: 0,
-    type: "credit-card",
+    paymentType: 2,
   },
   {
     id: uuid(),
@@ -44,7 +44,7 @@ export const transactions: TransactionType[] = [
     date: new Date("01/02/2024"),
     value: 300,
     categoryId: 1,
-    type: "credit-card",
+    paymentType: 2,
   },
   {
     id: uuid(),
@@ -52,7 +52,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 400,
     categoryId: 1,
-    type: "debit-card",
+    paymentType: 1,
   },
   {
     id: uuid(),
@@ -60,7 +60,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 50,
     categoryId: 2,
-    type: "pix",
+    paymentType: 0,
   },
   {
     id: uuid(),
@@ -68,7 +68,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 150,
     categoryId: 0,
-    type: "credit-card",
+    paymentType: 0,
   },
   {
     id: uuid(),
@@ -76,7 +76,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 200,
     categoryId: 2,
-    type: "pix",
+    paymentType: 0,
   },
   {
     id: uuid(),
@@ -84,7 +84,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    type: "pix",
+    paymentType: 0,
   },
   {
     id: uuid(),
@@ -92,7 +92,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    type: "pix",
+    paymentType: 0,
   },
   {
     id: uuid(),
@@ -100,7 +100,7 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    type: "pix",
+    paymentType: 0,
   },
   {
     id: uuid(),
@@ -108,25 +108,32 @@ export const transactions: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    type: "pix",
+    paymentType: 0,
   },
 ];
 
-export const initialTransactionFormValues = {
+export const DEFAULT_TRANSACTION_FORM_VALUES: TransactionFormType = {
   name: "",
   date: new Date(),
   value: 0,
-  type: "pix",
+  paymentType: 0,
   categoryId: 0,
 };
 
-export const initialCategoryFormValues = {
+export const DEFAULT_CATEGORY_FORM_VALUES = {
   name: "",
   color: "primary",
   icon: "icon-shirt",
 };
 
-export const paymentMethods = [
+export const CATEGORY_ICONS = [
+  {
+    name: "Roupas",
+    value: "icon-shirt",
+  },
+];
+
+export const PAYMENT_METHODS = [
   {
     name: "Pix",
     value: "pix",

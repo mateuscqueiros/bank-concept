@@ -2,10 +2,9 @@
 
 import { useModalStore } from "@/stores";
 import { IconPlus } from "@tabler/icons-react";
-import { useContext } from "react";
 
 export function AddTransaction() {
-  const openModal = useModalStore.use.openModal();
+  const openModal = useModalStore.use.open();
 
   return (
     <div>

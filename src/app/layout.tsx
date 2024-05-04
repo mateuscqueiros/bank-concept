@@ -1,7 +1,10 @@
 import { Container } from "@/components/layout";
 import "./globals.css";
 import type { Metadata } from "next";
-// import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "BNB",
@@ -93,7 +96,7 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body>
+      <body className={inter.className}>
         <Container>{children}</Container>
       </body>
     </html>
