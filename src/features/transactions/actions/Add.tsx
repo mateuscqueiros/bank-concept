@@ -1,8 +1,11 @@
+"use client";
+
+import { useModalStore } from "@/stores";
 import { IconPlus } from "@tabler/icons-react";
 import { useContext } from "react";
 
 export function AddTransaction() {
-  //const modalsContext = useContext(ModalsContext);
+  const openModal = useModalStore.use.openModal();
 
   return (
     <div>
@@ -10,8 +13,8 @@ export function AddTransaction() {
         <button
           type="button"
           className="btn-sm bg-primary rounded-md p-1 text-white hover:bg-tertiary"
+          onClick={() => openModal("createTransaction")}
         >
-          {/*onClick={() => modalsContext.open('transaction')}*/}
           <IconPlus />
         </button>
       </div>

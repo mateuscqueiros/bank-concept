@@ -1,13 +1,15 @@
 "use client";
 
-import { CreateTransactionModal } from "@/features/transactions/components/modals/CreateTransaction";
-import { UpdateTransactionModal } from "@/features/transactions/components/modals/UpdateTransaction";
+import {
+  CreateTransactionModal,
+  UpdateTransactionModal,
+} from "@/features/transactions";
 import { cn } from "@/lib/utils";
-import { useContext, useState } from "react";
+import { useModalStore } from "@/stores";
 
 export function ModalsContainer() {
-  const modalsContext = useContext(ModalsContext);
-  const isAnyModalOpen = modalsContext.data.some((modal) => modal.opened);
+  const modals = useModalStore.use.modals();
+  const isAnyModalOpen = modals.some((modal) => modal.open);
 
   return (
     <div
@@ -19,9 +21,8 @@ export function ModalsContainer() {
     >
       <div className="relative w-full h-full">
         <div className="flex flex-col items-center justify-center w-full h-full z-50">
-          <CreateTransactionModal open={createOpen} setOpen={setCreateOpen} />
-          <UpdateTransactionModal open={updateOpen} setOpen={setUpdateOpen} />
-          <CategoryModal />
+          <CreateTransactionModal />
+          <UpdateTransactionModal />
         </div>
         <div className="absolute top-0 w-screen h-screen bg-black opacity-80 z-40"></div>
       </div>

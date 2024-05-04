@@ -1,15 +1,10 @@
-"use client";
-
 import { AddCategory } from "@/features/categories";
 import { CategoriesProgress } from "@/features/categories/components";
 import { TransactionList } from "@/features/transactions";
 import { AddTransaction } from "@/features/transactions/actions/Add";
-import { CreateTransactionModal } from "@/features/transactions/components/modals/CreateTransaction";
 import { isToday, isYesterday } from "date-fns";
-import { useContext, useState } from "react";
 
 export default function Transactions() {
-  const [createOpen, setCreateOpen] = useState(false);
   const transactions: any[] = [];
   console.log("transactions render");
 
@@ -34,9 +29,6 @@ export default function Transactions() {
         <div className="flex flex-row gap-5">
           <AddCategory />
           <AddTransaction />
-          <button className="btn" onClick={() => setCreateOpen(true)}>
-            Abrir
-          </button>
         </div>
       </div>
       <div className="flex flex-row flex-wrap gap-x-[300px] gap-y-10 justify-center w-full p-12 bg-contrast rounded-xl mb-10">
@@ -65,7 +57,6 @@ export default function Transactions() {
           />
         )}
       </div>
-      <CreateTransactionModal open={createOpen} setOpen={setCreateOpen} />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Button, CreditCard } from "@/components/elements";
+import { useModalStore } from "@/stores";
 import { IconArrowRight, IconInfoCircle } from "@tabler/icons-react";
 
 export default function Home() {

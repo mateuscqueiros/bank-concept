@@ -2,7 +2,6 @@ import { Container } from "@/components/layout";
 import "./globals.css";
 import type { Metadata } from "next";
 import "react-datepicker/dist/react-datepicker.css";
-import { ModalsProvider } from "@/stores";
 
 export const metadata: Metadata = {
   title: "BNB",
@@ -95,9 +94,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
-        <ModalsProvider>
-          <Container>{children}</Container>
-        </ModalsProvider>
+        <Container>{children}</Container>
       </body>
     </html>
   );
