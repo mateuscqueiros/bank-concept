@@ -2,6 +2,7 @@ import { getCategoryIcon, useCategoryStore } from "@/features/categories";
 import { TransactionType } from "../types";
 import { format } from "date-fns";
 import { useModalStore } from "@/stores";
+import { cn } from "@/lib/utils";
 
 type TransactionItemProps = {
   data: TransactionType;
@@ -12,6 +13,7 @@ export function TransactionItem({ data }: TransactionItemProps) {
   const category = categories.find((c) => c.id === data.categoryId);
 
   const openUpdate = useModalStore.use.openUpdate();
+  const categoryBadgeBgColor = `bg-${category?.color}-500`;
 
   return (
     <div
@@ -19,7 +21,12 @@ export function TransactionItem({ data }: TransactionItemProps) {
       onClick={() => openUpdate("updateTransaction", data.id)}
     >
       <div className="absolute left-0 w-[50px] h-full flex items-center">
-        <div className="flex flex-row items-center justify-center bg-tertiary w-[40px] h-[40px] rounded-full">
+        <div
+          className={cn([
+            "flex flex-row items-center justify-center w-[40px] h-[40px] rounded-full",
+            categoryBadgeBgColor,
+          ])}
+        >
           <div className="w-[24px] h-[24px] text-white">
             {getCategoryIcon(category?.icon || "")}
           </div>

@@ -1,9 +1,17 @@
 import { TransactionType } from "@/features/transactions";
 import {
   IconBeach,
+  IconBus,
   IconCar,
+  IconClipboardHeart,
+  IconDots,
+  IconFileInfo,
+  IconHome,
+  IconPlane,
+  IconSchool,
   IconShirt,
   IconShoppingCart,
+  IconTie,
   IconToolsKitchen2,
 } from "@tabler/icons-react";
 import { CategoryType } from "../types";
@@ -25,20 +33,33 @@ export function getCategoryById(
 }
 
 export function getCategoryIcon(icon: string) {
-  if (icon === "icon-shirt") {
-    return <IconShirt />;
-  }
-  if (icon === "icon-car") {
-    return <IconCar />;
-  }
-  if (icon === "icon-kitchen") {
-    return <IconToolsKitchen2 />;
-  }
-  if (icon === "icon-shopping-cart") {
-    return <IconShoppingCart />;
-  }
-  if (icon === "icon-recreation") {
-    return <IconBeach />;
+  switch (icon) {
+    case "icon-shirt":
+      return <IconShirt />;
+    case "icon-kitchen":
+      return <IconToolsKitchen2 />;
+    case "icon-shopping-cart":
+      return <IconShoppingCart />;
+    case "icon-house":
+      return <IconHome />;
+    case "icon-education":
+      return <IconSchool />;
+    case "icon-recreation":
+      return <IconBeach />;
+    case "icon-other":
+      return <IconDots />;
+    case "icon-health":
+      return <IconClipboardHeart />;
+    case "icon-services":
+      return <IconFileInfo />;
+    case "icon-job":
+      return <IconTie />;
+    case "icon-transportation":
+      return <IconBus />;
+    case "icon-vehicles":
+      return <IconCar />;
+    case "icon-travel":
+      return <IconPlane />;
   }
 }
 

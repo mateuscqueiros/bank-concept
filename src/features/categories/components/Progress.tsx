@@ -22,17 +22,15 @@ function Category({ data, totalExpenses }: CategoryProps) {
     (acc: any, transaction: any) => transaction.value + acc,
     0,
   );
+  const color = `text-${data.color}-500`;
 
   return (
     <div
-      className={cn([
-        `flex flex-row mb-3 cursor-pointer`,
-        `text-${data.color}`,
-      ])}
+      className={cn([`flex flex-row mb-3 cursor-pointer`, color])}
       onClick={() => openUpdate("updateCategory", data.id)}
     >
       {icon}
-      <span className="ml-4 font-medium w-20 text-text">{data.name}</span>
+      <span className="ml-4 font-medium w-24 text-text">{data.name}</span>
       <span className="font-medium">
         {Math.round((totalCategoryExpenses / totalExpenses) * 100)} %
       </span>

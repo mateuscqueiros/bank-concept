@@ -2,6 +2,7 @@
 
 import { CategoryType, getCategoryItems } from "@/features/categories";
 import { TransactionType, useTransactionStore } from "@/features/transactions";
+import { cn } from "@/lib/utils";
 import { useLayoutEffect, useRef, useState } from "react";
 
 type ProgressProps = {
@@ -39,15 +40,15 @@ export function Progress({ categories }: ProgressProps) {
     const height =
       (totalCategoryExpenses / totalExpenses) * parentHeight +
       accSectionsHeight;
-    const backgroundColor = `var(--${category.color.replace("text", "")})`;
     const zIndex = categories.length - index - 1;
+    const bgColor = `bg-${category.color}-500`;
 
     accSectionsHeight += (totalCategoryExpenses / totalExpenses) * parentHeight;
     return (
       <div
         key={`section-item-${category.name}`}
-        style={{ height, backgroundColor, zIndex }}
-        className={`absolute bottom-0 w-full rounded-full`}
+        style={{ height, zIndex }}
+        className={cn([`absolute bottom-0 w-full rounded-full`, bgColor])}
       ></div>
     );
   });

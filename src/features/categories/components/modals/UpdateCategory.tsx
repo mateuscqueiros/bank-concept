@@ -18,7 +18,7 @@ export function UpdateCategoryModal() {
   const categoryData = categories.find((t) => t.id === thisModalState?.dataId);
 
   const onSubmit = (data: CategoryFormType) => {
-    if (thisModalState && thisModalState.dataId) {
+    if (thisModalState && thisModalState.dataId !== null) {
       updateCategory({ ...data }, thisModalState?.dataId as number);
     }
     closeModal(thisModalName);

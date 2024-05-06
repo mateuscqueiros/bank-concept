@@ -2,12 +2,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormItem, inputStyles, selectStyles } from "@/components/form";
 import { Button } from "@/components/elements";
+import { CategoryFormType, categorySchema } from "../types";
 import {
   CATEGORY_COLORS,
   CATEGORY_ICONS,
   DEFAULT_CATEGORY_FORM_VALUES,
-} from "@/values/data";
-import { CategoryFormType, categorySchema } from "../types";
+} from "../values";
 
 type DefaultCategoryFormProps = {
   defaultValues?: CategoryFormType;

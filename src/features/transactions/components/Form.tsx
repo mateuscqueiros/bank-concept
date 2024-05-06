@@ -4,12 +4,10 @@ import { FormItem, inputStyles, selectStyles } from "@/components/form";
 import { NumericFormat } from "react-number-format";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@/components/elements";
-import {
-  DEFAULT_TRANSACTION_FORM_VALUES,
-  PAYMENT_METHODS,
-} from "@/values/data";
+import { PAYMENT_METHODS } from "@/values/data";
 import { TransactionFormType, transactionSchema } from "../types";
 import { useCategoryStore } from "@/features/categories";
+import { DEFAULT_TRANSACTION_FORM_VALUES } from "../values";
 
 type DefaultTransactionFormProps = {
   defaultValues?: TransactionFormType;

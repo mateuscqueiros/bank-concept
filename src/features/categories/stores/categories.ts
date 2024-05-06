@@ -1,9 +1,9 @@
-import { DEFAULT_CATEGORY_VALUES } from "@/values/data";
 import { create } from "zustand";
 import { createSelectors } from "@/stores/utils";
 import { CategoryFormType, CategoryType } from "@/features/categories";
 import { toast } from "sonner";
 import { useTransactionStore } from "@/features/transactions";
+import { DEFAULT_CATEGORY_VALUES } from '../values'
 
 interface CategoryStoreType {
   categories: CategoryType[];
@@ -20,8 +20,10 @@ const categoryStoreBase = create<CategoryStoreType>()((set) => ({
   }),
   update: (values, id) =>
     set((state) => {
-      const other = state.categories.filter(t => t.id !== id)
+      const other = state.categories.filter(c => c.id !== id)
       toast.success('Transação atualizada')
+      const nState = { id, ...values }
+      console.log(nState)
       return { ...state, categories: [...other, { id, ...values }] }
     }),
   delete: (id) => {
