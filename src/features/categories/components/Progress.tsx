@@ -60,7 +60,7 @@ export function CategoriesProgress({ className }: { className?: string }) {
   return (
     <div
       className={cn([
-        "flex flex-col md:flex-row items-center w-full justify-between",
+        "flex flex-col md:flex-row gap-y-4 items-center w-full justify-between",
         className,
       ])}
     >

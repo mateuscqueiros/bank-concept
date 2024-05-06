@@ -16,9 +16,8 @@ export function ExpensesTab() {
         <Image
           src="/expenses.png"
           alt="Gráfico das despesas"
-          width={500}
-          height={300}
-          style={{ width: "500px", height: "300px" }}
+          width={700}
+          height={450}
         />
       )}
       <div className="w-full">

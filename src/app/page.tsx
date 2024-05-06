@@ -1,8 +1,3 @@
-/*
- * TODO:
- * - Criar foto da Home
- * - Achar cores melhores
- */
 "use client";
 
 import { Button, CreditCard } from "@/components/elements";
@@ -51,12 +46,6 @@ export default function Home() {
           </div>
           <div className="flex flex-row gap-5 xs:gap-10 mt-10">
             <Button>Pagar fatura</Button>
-            {/*<Button
-              variant="subtle"
-              rightSection={<IconArrowRight style={{ rotate: "-45deg" }} />}
-            >
-              Saiba mais
-            </Button>*/}
           </div>
         </div>
         <div className="block mt-10 xl:hidden ">
