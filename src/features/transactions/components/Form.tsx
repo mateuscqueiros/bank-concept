@@ -4,18 +4,25 @@ import { FormItem, inputStyles, selectStyles } from "@/components/form";
 import { NumericFormat } from "react-number-format";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@/components/elements";
-import { DEFAULT_TRANSACTION_FORM_VALUES } from "@/values/data";
+import {
+  DEFAULT_TRANSACTION_FORM_VALUES,
+  PAYMENT_METHODS,
+} from "@/values/data";
 import { TransactionFormType, transactionSchema } from "../types";
+import { useCategoryStore } from "@/stores";
 
 type DefaultTransactionFormProps = {
   defaultValues?: TransactionFormType;
   onSubmit: (values: TransactionFormType) => void;
+  modalName?: string;
 };
 
 export function DefaultTransactionForm({
   defaultValues,
   onSubmit,
 }: DefaultTransactionFormProps) {
+  const categories = useCategoryStore.use.categories();
+
   const {
     register,
     handleSubmit,
@@ -26,6 +33,7 @@ export function DefaultTransactionForm({
     resolver: zodResolver(transactionSchema),
     defaultValues: defaultValues || DEFAULT_TRANSACTION_FORM_VALUES,
   });
+
   return (
     <form
       onSubmit={handleSubmit((values) => {
@@ -63,21 +71,20 @@ export function DefaultTransactionForm({
               valueAsNumber: true,
             })}
           >
-            <option value={0}>Categoria 1</option>
-            <option value={1}>Categoria 2</option>
-            <option value={2}>Categoria 3</option>
+            {categories.map((c) => (
+              <option value={c.id} key={c.name}>
+                {c.name}
+              </option>
+            ))}
           </select>
         </FormItem>
         <FormItem label="Tipo" error={errors.paymentType}>
-          <select
-            className={selectStyles}
-            {...register("paymentType", {
-              valueAsNumber: true,
-            })}
-          >
-            <option value={0}>Tipo 1</option>
-            <option value={1}>Tipo 2</option>
-            <option value={2}>Tipo 3</option>
+          <select className={selectStyles} {...register("paymentType")}>
+            {PAYMENT_METHODS.map((p) => (
+              <option value={p.value} key={p.name}>
+                {p.name}
+              </option>
+            ))}
           </select>
         </FormItem>
       </div>

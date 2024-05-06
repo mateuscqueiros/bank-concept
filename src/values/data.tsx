@@ -7,25 +7,25 @@ export const DEFAULT_CATEGORY_VALUES: CategoryType[] = [
     id: 0,
     icon: "icon-car",
     name: "Carro",
-    color: "text-primary",
+    color: "primary",
   },
   {
     id: 1,
     icon: "icon-shirt",
     name: "Roupas",
-    color: "text-secondary",
+    color: "secondary",
   },
   {
     id: 2,
     icon: "icon-kitchen",
     name: "Comida",
-    color: "text-tertiary",
+    color: "tertiary",
   },
   {
     id: 3,
     icon: "icon-shopping-cart",
     name: "Mercado",
-    color: "text-secondary",
+    color: "secondary",
   },
 ];
 
@@ -36,7 +36,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date("01/02/2023"),
     value: 200,
     categoryId: 0,
-    paymentType: 2,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -44,7 +44,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date("01/02/2024"),
     value: 300,
     categoryId: 1,
-    paymentType: 2,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -52,7 +52,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 400,
     categoryId: 1,
-    paymentType: 1,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -60,7 +60,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 50,
     categoryId: 2,
-    paymentType: 0,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -68,7 +68,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 150,
     categoryId: 0,
-    paymentType: 0,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -76,7 +76,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 200,
     categoryId: 2,
-    paymentType: 0,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -84,7 +84,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    paymentType: 0,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -92,7 +92,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    paymentType: 0,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -100,7 +100,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    paymentType: 0,
+    paymentType: "pix",
   },
   {
     id: uuid(),
@@ -108,7 +108,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     date: new Date(),
     value: 230,
     categoryId: 3,
-    paymentType: 0,
+    paymentType: "pix",
   },
 ];
 
@@ -116,20 +116,47 @@ export const DEFAULT_TRANSACTION_FORM_VALUES: TransactionFormType = {
   name: "",
   date: new Date(),
   value: 0,
-  paymentType: 0,
+  paymentType: "pix",
   categoryId: 0,
 };
 
 export const DEFAULT_CATEGORY_FORM_VALUES = {
   name: "",
-  color: "primary",
   icon: "icon-shirt",
+  color: "primary",
 };
+
+export const CATEGORY_COLORS = [
+  {
+    name: "Primária",
+    value: "primary",
+  },
+  {
+    name: "Secundária",
+    value: "secondary",
+  },
+  {
+    name: "Terciária",
+    value: "tertiary",
+  },
+];
 
 export const CATEGORY_ICONS = [
   {
     name: "Roupas",
     value: "icon-shirt",
+  },
+  {
+    name: "Carro",
+    value: "icon-car",
+  },
+  {
+    name: "Alimentos",
+    value: "icon-kitchen",
+  },
+  {
+    name: "Supermecado",
+    value: "icon-shopping-cart",
   },
 ];
 

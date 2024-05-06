@@ -23,8 +23,11 @@ function Category({ data, totalExpenses }: CategoryProps) {
 
   return (
     <div
-      className={cn([`flex flex-row mb-3 cursor-pointer`, data.color])}
-      onClick={() => openUpdate("categoryUpdate", data.id)}
+      className={cn([
+        `flex flex-row mb-3 cursor-pointer`,
+        `text-${data.color}`,
+      ])}
+      onClick={() => openUpdate("updateCategory", data.id)}
     >
       {icon}
       <span className="ml-4 font-medium w-20 text-text">{data.name}</span>
@@ -35,7 +38,7 @@ function Category({ data, totalExpenses }: CategoryProps) {
   );
 }
 
-export function CategoriesProgress() {
+export function CategoriesProgress({ className }: { className: string }) {
   const transactions = useTransactionStore.use.transactions();
   const categories = useCategoryStore.use.categories();
 
@@ -55,7 +58,12 @@ export function CategoriesProgress() {
   ));
 
   return (
-    <div className={cn(["flex flex-row w-full justify-between"])}>
+    <div
+      className={cn([
+        "flex flex-col md:flex-row items-center w-full justify-between",
+        className,
+      ])}
+    >
       {transactions.length > 0 && (
         <>
           <div className="flex flex-row relative">

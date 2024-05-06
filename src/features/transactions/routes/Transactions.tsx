@@ -9,6 +9,7 @@ import { isToday, isYesterday } from "date-fns";
 
 export function TransactionsPage() {
   const transactions = useTransactionStore.use.transactions();
+  console.log(transactions);
 
   const totalExpenses = transactions.reduce(
     (acc, transaction) => transaction.value + acc,

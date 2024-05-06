@@ -6,7 +6,7 @@ export type TransactionType = {
   value: number;
   date: Date;
   categoryId: number;
-  paymentType: number;
+  paymentType: string;
 };
 
 export const transactionSchema = z.object({
@@ -18,7 +18,7 @@ export const transactionSchema = z.object({
     }),
   }),
   categoryId: z.number({ message: 'A categoria é obrigatória' }),
-  paymentType: z.number({ message: 'O tipo é obrigatório' })
+  paymentType: z.string({ message: 'O tipo é obrigatório' })
 }).required();
 
 export type TransactionFormType = z.infer<typeof transactionSchema>;

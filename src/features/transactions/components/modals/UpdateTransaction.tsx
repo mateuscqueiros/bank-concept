@@ -2,12 +2,13 @@ import { Modal } from "@/components/elements/Modal";
 import { TransactionFormType } from "../../types";
 import { useModalStore, useTransactionStore } from "@/stores";
 import { DefaultTransactionForm } from "../Form";
+import { DeleteTransaction } from "../../actions";
 
 export function UpdateTransactionModal() {
-  const thisModalId = "updateTransaction";
+  const thisModalName = "updateTransaction";
   const thisModalState = useModalStore.use
     .modals()
-    .find((m) => m.name === thisModalId);
+    .find((m) => m.name === thisModalName);
 
   const transactions = useTransactionStore.use.transactions();
   const updateTransaction = useTransactionStore.use.update();
@@ -16,19 +17,27 @@ export function UpdateTransactionModal() {
   const transactionData = transactions.find(
     (t) => t.id === thisModalState?.dataId,
   );
-  console.log(transactionData);
 
   const onSubmit = (data: TransactionFormType) => {
     if (thisModalState && thisModalState.dataId) {
       updateTransaction({ ...data }, thisModalState?.dataId as string);
     }
-    closeModal("updateTransaction");
+    closeModal(thisModalName);
   };
 
   return (
-    <Modal title="Transação" name="updateTransaction">
+    <Modal
+      actions={
+        thisModalState?.dataId !== null ? (
+          <DeleteTransaction itemId={thisModalState?.dataId as string} />
+        ) : undefined
+      }
+      title="Transação"
+      name={thisModalName}
+    >
       {transactionData && (
         <DefaultTransactionForm
+          modalName={thisModalName}
           defaultValues={transactionData}
           onSubmit={onSubmit}
         />

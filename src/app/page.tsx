@@ -1,7 +1,7 @@
 /*
  * TODO:
- * - Remover duplicação dos botões Saiba mais da home
- * - Criar formulário das categorias
+ * - Delete no modal
+ * - Arrumar responsivo
  * - Criar foto da Home
  */
 "use client";
@@ -53,12 +53,12 @@ export default function Home() {
           </div>
           <div className="flex flex-row gap-5 xs:gap-10 mt-10">
             <Button>Pagar fatura</Button>
-            <Button
+            {/*<Button
               variant="subtle"
               rightSection={<IconArrowRight style={{ rotate: "-45deg" }} />}
             >
               Saiba mais
-            </Button>
+            </Button>*/}
           </div>
         </div>
         <div className="block mt-10 xl:hidden ">

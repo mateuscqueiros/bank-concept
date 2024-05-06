@@ -1,8 +1,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormItem, inputStyles } from "@/components/form";
+import { FormItem, inputStyles, selectStyles } from "@/components/form";
 import { Button } from "@/components/elements";
-import { DEFAULT_CATEGORY_FORM_VALUES } from "@/values/data";
+import {
+  CATEGORY_COLORS,
+  CATEGORY_ICONS,
+  DEFAULT_CATEGORY_FORM_VALUES,
+} from "@/values/data";
 import { CategoryFormType, categorySchema } from "../types";
 
 type DefaultCategoryFormProps = {
@@ -23,6 +27,7 @@ export function DefaultCategoryForm({
     resolver: zodResolver(categorySchema),
     defaultValues: defaultValues || DEFAULT_CATEGORY_FORM_VALUES,
   });
+
   return (
     <form
       onSubmit={handleSubmit((values) => {
@@ -33,6 +38,24 @@ export function DefaultCategoryForm({
     >
       <FormItem label="Nome" error={errors.name}>
         <input type="text" className={inputStyles} {...register("name")} />
+      </FormItem>
+      <FormItem label="Ícone" error={errors.icon}>
+        <select className={selectStyles} {...register("icon")}>
+          {CATEGORY_ICONS.map((icon) => (
+            <option value={icon.value} key={icon.value}>
+              {icon.name}
+            </option>
+          ))}
+        </select>
+      </FormItem>
+      <FormItem label="Cor" error={errors.color}>
+        <select className={selectStyles} {...register("color")}>
+          {CATEGORY_COLORS.map((color) => (
+            <option value={color.value} key={color.value}>
+              {color.name}
+            </option>
+          ))}
+        </select>
       </FormItem>
       <Button className="btn-primary w-full" type="submit">
         Salvar

@@ -3,6 +3,7 @@
 import { ReactNode, useState } from "react";
 import { Header, Navbar } from ".";
 import { ModalsContainer } from "../elements";
+import { Toaster } from "sonner";
 
 type ContainerProps = {
   children: ReactNode;
@@ -19,6 +20,7 @@ export function Container({ children }: ContainerProps) {
         {children}
       </main>
       <ModalsContainer />
+      <Toaster />
     </div>
   );
 }
