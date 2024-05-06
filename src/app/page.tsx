@@ -1,15 +1,13 @@
 /*
  * TODO:
- * - Delete no modal
- * - Arrumar responsivo
  * - Criar foto da Home
+ * - Achar cores melhores
  */
 "use client";
 
 import { Button, CreditCard } from "@/components/elements";
 import { HomeInfoSection } from "@/components/layout";
-import { TransactionList } from "@/features/transactions";
-import { useTransactionStore } from "@/stores";
+import { TransactionList, useTransactionStore } from "@/features/transactions";
 import { IconArrowRight, IconInfoCircle } from "@tabler/icons-react";
 
 export default function Home() {

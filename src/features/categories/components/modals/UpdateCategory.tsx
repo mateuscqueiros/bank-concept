@@ -1,8 +1,9 @@
 import { Modal } from "@/components/elements/Modal";
-import { useCategoryStore, useModalStore } from "@/stores";
+import { useModalStore } from "@/stores";
 import { CategoryFormType } from "../../types";
 import { DefaultCategoryForm } from "../Form";
 import { DeleteCategory } from "../../actions";
+import { useCategoryStore } from "../../stores";
 
 export function UpdateCategoryModal() {
   const thisModalName = "updateCategory";
@@ -22,8 +23,6 @@ export function UpdateCategoryModal() {
     }
     closeModal(thisModalName);
   };
-
-  console.log(thisModalState?.dataId);
 
   return (
     <Modal

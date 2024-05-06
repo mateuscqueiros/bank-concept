@@ -9,7 +9,7 @@ import {
   PAYMENT_METHODS,
 } from "@/values/data";
 import { TransactionFormType, transactionSchema } from "../types";
-import { useCategoryStore } from "@/stores";
+import { useCategoryStore } from "@/features/categories";
 
 type DefaultTransactionFormProps = {
   defaultValues?: TransactionFormType;

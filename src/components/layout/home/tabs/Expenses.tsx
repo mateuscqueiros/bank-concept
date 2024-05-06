@@ -1,5 +1,5 @@
 import { CategoriesProgress } from "@/features/categories";
-import { useTransactionStore } from "@/stores";
+import { useTransactionStore } from "@/features/transactions";
 import Image from "next/image";
 
 export function ExpensesTab() {

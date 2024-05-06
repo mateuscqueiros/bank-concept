@@ -1,7 +1,7 @@
-import { getCategoryIcon } from "@/features/categories";
+import { getCategoryIcon, useCategoryStore } from "@/features/categories";
 import { TransactionType } from "../types";
 import { format } from "date-fns";
-import { useCategoryStore, useModalStore } from "@/stores";
+import { useModalStore } from "@/stores";
 
 type TransactionItemProps = {
   data: TransactionType;

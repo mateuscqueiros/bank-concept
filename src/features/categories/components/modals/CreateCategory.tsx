@@ -1,9 +1,10 @@
 "use client";
 
 import { Modal } from "@/components/elements/Modal";
-import { useCategoryStore, useModalStore } from "@/stores";
 import { CategoryFormType } from "../../types";
 import { DefaultCategoryForm } from "../Form";
+import { useCategoryStore } from "../../stores";
+import { useModalStore } from "@/stores";
 
 export function CreateCategoryModal() {
   const thisModalName = "createCategory";

@@ -1,9 +1,9 @@
 import { DEFAULT_CATEGORY_VALUES } from "@/values/data";
 import { create } from "zustand";
-import { createSelectors } from "./utils";
+import { createSelectors } from "@/stores/utils";
 import { CategoryFormType, CategoryType } from "@/features/categories";
-import { useTransactionStore } from "./transactions";
 import { toast } from "sonner";
+import { useTransactionStore } from "@/features/transactions";
 
 interface CategoryStoreType {
   categories: CategoryType[];

@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <div className="flex justify-center items-center w-full h-full">
       <IconLoader className="rounded-full animate-spin " />
-      <span>Loading...</span>
+      <span>Carregando...</span>
     </div>
   );
 }

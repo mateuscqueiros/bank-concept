@@ -2,14 +2,12 @@
 
 import { AddCategory } from "@/features/categories";
 import { CategoriesProgress } from "@/features/categories/components";
-import { TransactionList } from "@/features/transactions";
+import { TransactionList, useTransactionStore } from "@/features/transactions";
 import { AddTransaction } from "@/features/transactions/actions/Add";
-import { useTransactionStore } from "@/stores";
 import { isToday, isYesterday } from "date-fns";
 
 export function TransactionsPage() {
   const transactions = useTransactionStore.use.transactions();
-  console.log(transactions);
 
   const totalExpenses = transactions.reduce(
     (acc, transaction) => transaction.value + acc,

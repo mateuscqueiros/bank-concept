@@ -2,9 +2,10 @@
 
 import { Modal } from "@/components/elements/Modal";
 import { TransactionFormType } from "../../types";
-import { useModalStore, useTransactionStore } from "@/stores";
+import { useModalStore } from "@/stores";
 import { uuid } from "@/lib/utils";
 import { DefaultTransactionForm } from "../Form";
+import { useTransactionStore } from "../../stores";
 
 export function CreateTransactionModal() {
   const thisModalName = "createTransaction";

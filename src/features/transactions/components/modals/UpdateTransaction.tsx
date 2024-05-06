@@ -1,8 +1,9 @@
 import { Modal } from "@/components/elements/Modal";
 import { TransactionFormType } from "../../types";
-import { useModalStore, useTransactionStore } from "@/stores";
+import { useModalStore } from "@/stores";
 import { DefaultTransactionForm } from "../Form";
 import { DeleteTransaction } from "../../actions";
+import { useTransactionStore } from "../../stores";
 
 export function UpdateTransactionModal() {
   const thisModalName = "updateTransaction";

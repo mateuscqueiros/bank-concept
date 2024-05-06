@@ -1,8 +1,7 @@
 "use client";
 
 import { CategoryType, getCategoryItems } from "@/features/categories";
-import { TransactionType } from "@/features/transactions";
-import { useTransactionStore } from "@/stores";
+import { TransactionType, useTransactionStore } from "@/features/transactions";
 import { useLayoutEffect, useRef, useState } from "react";
 
 type ProgressProps = {
@@ -40,7 +39,7 @@ export function Progress({ categories }: ProgressProps) {
     const height =
       (totalCategoryExpenses / totalExpenses) * parentHeight +
       accSectionsHeight;
-    const backgroundColor = `var(-${category.color.replace("text", "")})`;
+    const backgroundColor = `var(--${category.color.replace("text", "")})`;
     const zIndex = categories.length - index - 1;
 
     accSectionsHeight += (totalCategoryExpenses / totalExpenses) * parentHeight;

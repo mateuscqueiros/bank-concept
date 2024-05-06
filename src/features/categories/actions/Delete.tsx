@@ -1,6 +1,7 @@
-import { useCategoryStore, useModalStore } from "@/stores";
+import { useModalStore } from "@/stores";
 import { IconTrash } from "@tabler/icons-react";
 import { toast } from "sonner";
+import { useCategoryStore } from "../stores";
 
 export type DeleteCategoryProps = {
   itemId: number;

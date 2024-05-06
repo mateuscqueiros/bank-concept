@@ -1,5 +1,6 @@
-import { useModalStore, useTransactionStore } from "@/stores";
+import { useModalStore } from "@/stores";
 import { IconTrash } from "@tabler/icons-react";
+import { useTransactionStore } from "../stores";
 
 export type DeleteTransactionProps = {
   itemId: string;

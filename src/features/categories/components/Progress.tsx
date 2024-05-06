@@ -2,7 +2,9 @@ import { cn } from "@/lib/utils";
 import { CategoryType } from "../types";
 import { getCategoryIcon, getCategoryItems } from "../lib";
 import { Button, Progress } from "@/components/elements";
-import { useCategoryStore, useModalStore, useTransactionStore } from "@/stores";
+import { useModalStore } from "@/stores";
+import { useTransactionStore } from "@/features/transactions";
+import { useCategoryStore } from "../stores";
 
 type CategoryProps = {
   totalExpenses: number;
@@ -38,7 +40,7 @@ function Category({ data, totalExpenses }: CategoryProps) {
   );
 }
 
-export function CategoriesProgress({ className }: { className: string }) {
+export function CategoriesProgress({ className }: { className?: string }) {
   const transactions = useTransactionStore.use.transactions();
   const categories = useCategoryStore.use.categories();
 
