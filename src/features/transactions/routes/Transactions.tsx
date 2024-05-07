@@ -1,7 +1,6 @@
 "use client";
 
-import { AddCategory } from "@/features/categories";
-import { CategoriesProgress } from "@/features/categories/components";
+import { AddCategory, CategoriesProgress } from "@/features/categories";
 import { TransactionList, useTransactionStore } from "@/features/transactions";
 import { AddTransaction } from "@/features/transactions/actions/Add";
 import { isToday, isYesterday } from "date-fns";
@@ -47,15 +46,10 @@ export function TransactionsPage() {
         <CategoriesProgress className="justify-center max-w-[400px] flex-wrap gap-x-20 gap-y-10" />
       </div>
       <div className="flex flex-col max-w-[600px] w-full mx-auto gap-10">
-        {today.length > 0 && <TransactionList title="Hoje" items={today} />}
-        {yesterday.length > 0 && (
-          <TransactionList title="Ontem" items={yesterday} />
-        )}
+        {today.length > 0 && <TransactionList title="Hoje" />}
+        {yesterday.length > 0 && <TransactionList title="Ontem" />}
         {previous.length > 0 && (
-          <TransactionList
-            title={(today || yesterday) && "Anterior"}
-            items={previous}
-          />
+          <TransactionList title={(today || yesterday) && "Anterior"} />
         )}
       </div>
     </div>

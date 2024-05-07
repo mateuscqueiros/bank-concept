@@ -1,5 +1,6 @@
-// https://docs.pmnd.rs/zustand/guides/initialize-state-with-props#basic-component-usage
+'use client'
 
+// https://docs.pmnd.rs/zustand/guides/initialize-state-with-props#basic-component-usage
 import { create } from "zustand";
 import { createSelectors } from "./utils";
 import { TransactionType } from "@/features/transactions";

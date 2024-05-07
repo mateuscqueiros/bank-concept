@@ -1,4 +1,4 @@
-import { TransactionsPage } from "@/features/transactions/routes/Transactions";
+import { TransactionsPage } from "@/features/transactions";
 
 export default function Transactions() {
   console.log("Olá");

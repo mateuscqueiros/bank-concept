@@ -1,13 +1,9 @@
-"use client";
-
 import { Button, CreditCard } from "@/components/elements";
 import { HomeInfoSection } from "@/components/layout";
-import { TransactionList, useTransactionStore } from "@/features/transactions";
+import { TransactionList } from "@/features/transactions/components/List";
 import { IconArrowRight, IconInfoCircle } from "@tabler/icons-react";
 
 export default function Home() {
-  const transactions = useTransactionStore.use.transactions();
-
   return (
     <div className="flex flex-row w-full xl:max-w-[calc(50%-60px)]">
       <div className="flex flex-col flex-1 p-6 pt-10 h-full">
@@ -52,7 +48,7 @@ export default function Home() {
           <HomeInfoSection />
         </div>
         <div className="mt-10">
-          <TransactionList title="Transações recentes" items={transactions} />
+          <TransactionList title="Transações recentes" />
         </div>
       </div>
       <div className="bg-contrast fixed w-[20%] xl:w-[calc(50%-100px)] right-0 flex-1 h-screen py-10 px-20 hidden xl:block">

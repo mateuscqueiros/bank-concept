@@ -1,3 +1,5 @@
+'use client'
+
 import { create } from "zustand";
 import { createSelectors } from "@/stores/utils";
 import { CategoryFormType, CategoryType } from "@/features/categories";

@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout";
+import { LayoutContainer } from "@/components/layout";
 import "./globals.css";
 import type { Metadata } from "next";
 import "react-datepicker/dist/react-datepicker.css";
@@ -97,7 +97,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={inter.className}>
-        <Container>{children}</Container>
+        <LayoutContainer>{children}</LayoutContainer>
       </body>
     </html>
   );

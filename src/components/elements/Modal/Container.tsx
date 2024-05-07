@@ -3,7 +3,7 @@
 import {
   CreateCategoryModal,
   UpdateCategoryModal,
-} from "@/features/categories/components/modals";
+} from "@/features/categories";
 import {
   CreateTransactionModal,
   UpdateTransactionModal,

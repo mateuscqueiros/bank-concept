@@ -1,5 +1,3 @@
-"use client";
-
 import { Modal } from "@/components/elements/Modal";
 import { TransactionFormType } from "../../types";
 import { useModalStore } from "@/stores";

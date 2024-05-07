@@ -1,3 +1,5 @@
+'use client'
+
 import { TransactionFormType, TransactionType } from "@/features/transactions";
 import { create } from "zustand";
 import { toast } from "sonner";
