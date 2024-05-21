@@ -33,7 +33,9 @@ export function DefaultTransactionForm({
     defaultValues: defaultValues || DEFAULT_TRANSACTION_FORM_VALUES,
   });
 
-  console.log(watch("categoryId"));
+  console.log(watch("date"));
+  console.log(typeof new Date());
+  console.log(typeof watch("date"));
 
   return (
     <form
@@ -93,8 +95,11 @@ export function DefaultTransactionForm({
               className={selectStyles}
               dateFormat="dd/MM/yyyy"
               placeholderText="Data"
-              selected={field.value}
-              onChange={(date: any) => field.onChange(date)}
+              selected={new Date(field.value)}
+              onChange={(date: any) => {
+                console.log(typeof date);
+                field.onChange(new Date(date));
+              }}
             />
           </FormItem>
         )}
