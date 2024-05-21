@@ -7,7 +7,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Conserto do Carro",
     date: new Date("01/02/2023"),
     value: 200,
-    categoryId: 0,
+    categoryId: '0',
     paymentType: "pix",
   },
   {
@@ -15,7 +15,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Roupas novas",
     date: new Date("01/02/2024"),
     value: 300,
-    categoryId: 1,
+    categoryId: '1',
     paymentType: "pix",
   },
   {
@@ -23,7 +23,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Tênis novo",
     date: new Date(),
     value: 400,
-    categoryId: 1,
+    categoryId: '1',
     paymentType: "pix",
   },
   {
@@ -31,7 +31,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Guloseimas",
     date: new Date(),
     value: 50,
-    categoryId: 2,
+    categoryId: '2',
     paymentType: "pix",
   },
   {
@@ -39,7 +39,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Limpeza do carro",
     date: new Date(),
     value: 150,
-    categoryId: 0,
+    categoryId: '0',
     paymentType: "pix",
   },
   {
@@ -47,7 +47,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Camisas",
     date: new Date(),
     value: 200,
-    categoryId: 2,
+    categoryId: '2',
     paymentType: "pix",
   },
   {
@@ -55,7 +55,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Mercado",
     date: new Date(),
     value: 230,
-    categoryId: 3,
+    categoryId: '3',
     paymentType: "pix",
   },
   {
@@ -63,7 +63,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Mercado",
     date: new Date(),
     value: 230,
-    categoryId: 3,
+    categoryId: '3',
     paymentType: "pix",
   },
   {
@@ -71,7 +71,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Mercado",
     date: new Date(),
     value: 230,
-    categoryId: 3,
+    categoryId: '3',
     paymentType: "pix",
   },
   {
@@ -79,7 +79,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     name: "Mercado",
     date: new Date(),
     value: 230,
-    categoryId: 3,
+    categoryId: '3',
     paymentType: "pix",
   },
 ];
@@ -89,5 +89,5 @@ export const DEFAULT_TRANSACTION_FORM_VALUES: TransactionFormType = {
   date: new Date(),
   value: 0,
   paymentType: "pix",
-  categoryId: 0,
+  categoryId: '0',
 };

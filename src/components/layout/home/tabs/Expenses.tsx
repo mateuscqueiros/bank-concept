@@ -1,9 +1,9 @@
 import { CategoriesProgress } from "@/features/categories";
-import { useTransactionStore } from "@/features/transactions";
+import { useTransactions } from "@/features/transactions";
 import Image from "next/image";
 
 export function ExpensesTab() {
-  const transactions = useTransactionStore.use.transactions();
+  const { data: transactions } = useTransactions();
   const total = transactions.reduce(
     (acc, transaction) => transaction.value + acc,
     0,

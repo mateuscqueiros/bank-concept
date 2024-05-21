@@ -43,10 +43,10 @@ const categoryStoreBase = create<CategoryStoreType>()((set) => ({
       const transactionStore = useTransactionStore.getState()
       const currentTransactions = transactionStore.transactions
       /* Nova categoria será a próxima ou 0 */
-      const newCategoryId = id + 1 > state.categories.length - 1 ? 0 : id + 1
+      const newCategoryId = Number(id) + 1 > state.categories.length - 1 ? 0 : id + 1
       const newTransactions = currentTransactions.map(t => {
         if (t.categoryId === id) {
-          t.categoryId = newCategoryId
+          t.categoryId = String(newCategoryId)
         }
         return t
       })

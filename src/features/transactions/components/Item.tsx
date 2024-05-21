@@ -1,15 +1,15 @@
-import { getCategoryIcon, useCategoryStore } from "@/features/categories";
-import { TransactionType } from "../types";
-import { format } from "date-fns";
-import { useModalStore } from "@/stores";
+import { getCategoryIcon, useCategories } from "@/features/categories";
 import { cn } from "@/lib/utils";
+import { useModalStore } from "@/stores";
+import { format } from "date-fns";
+import { TransactionType } from "../types";
 
 type TransactionItemProps = {
   data: TransactionType;
 };
 
 export function TransactionItem({ data }: TransactionItemProps) {
-  const categories = useCategoryStore.use.categories();
+  const { data: categories } = useCategories();
   const category = categories.find((c) => c.id === data.categoryId);
 
   const openUpdate = useModalStore.use.openUpdate();

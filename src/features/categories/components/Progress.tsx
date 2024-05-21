@@ -1,10 +1,11 @@
-import { cn } from "@/lib/utils";
-import { CategoryType } from "../types";
-import { getCategoryIcon, getCategoryItems } from "../lib";
 import { Button, Progress } from "@/components/elements";
+import { useTransactions } from "@/features/transactions";
+import { cn } from "@/lib/utils";
 import { useModalStore } from "@/stores";
-import { useTransactionStore } from "@/features/transactions";
-import { useCategoryStore } from "../stores";
+import { useCategories, useCreateCategory } from "../api";
+import { getCategoryIcon, getCategoryItems } from "../lib";
+import { CategoryType } from "../types";
+import { DEFAULT_CATEGORY_VALUES } from "../values";
 
 type CategoryProps = {
   totalExpenses: number;
@@ -12,9 +13,9 @@ type CategoryProps = {
 };
 
 function Category({ data, totalExpenses }: CategoryProps) {
+  const { data: transactions } = useTransactions();
   const openUpdate = useModalStore.use.openUpdate();
 
-  const transactions = useTransactionStore.use.transactions();
   const icon = getCategoryIcon(data.icon);
 
   const categoryTransactions = getCategoryItems(data.id, transactions);
@@ -39,8 +40,8 @@ function Category({ data, totalExpenses }: CategoryProps) {
 }
 
 export function CategoriesProgress({ className }: { className?: string }) {
-  const transactions = useTransactionStore.use.transactions();
-  const categories = useCategoryStore.use.categories();
+  const { data: categories } = useCategories();
+  const { data: transactions } = useTransactions();
 
   let totalExpenses = transactions.reduce(
     (acc, transaction) => transaction.value + acc,
@@ -49,13 +50,18 @@ export function CategoriesProgress({ className }: { className?: string }) {
   let infoIteration = totalExpenses / 4;
   let accInfo = totalExpenses;
 
-  const expensesCategories = categories.map((category) => (
-    <Category
-      key={`category-item-${category.id}`}
-      totalExpenses={totalExpenses}
-      data={category}
-    />
-  ));
+  const expensesCategories = categories.map(
+    (category) =>
+      totalExpenses && (
+        <Category
+          key={`category-item-${category.id}`}
+          totalExpenses={totalExpenses}
+          data={category}
+        />
+      ),
+  );
+
+  const create = useCreateCategory();
 
   return (
     <div
@@ -68,25 +74,37 @@ export function CategoriesProgress({ className }: { className?: string }) {
         <>
           <div className="flex flex-row relative">
             <div className="flex flex-col justify-between text-sm h-full mr-10">
-              {Array(4)
-                .fill(0)
-                .map((_) => {
-                  const displayInfo = accInfo + infoIteration;
-                  accInfo -= infoIteration;
-                  return (
-                    <span key={`info-item-${displayInfo}`}>
-                      R$ {Math.ceil(displayInfo / 10) * 10}
-                    </span>
-                  );
-                })}
-              <span>R$ {Math.ceil(infoIteration / 10) * 10}</span>
-              <span>R$ 0</span>
+              {infoIteration && (
+                <>
+                  {Array(4)
+                    .fill(0)
+                    .map((_) => {
+                      const displayInfo = accInfo + infoIteration;
+                      accInfo -= infoIteration;
+                      return (
+                        <span key={`info-item-${displayInfo}`}>
+                          R$ {Math.ceil(displayInfo / 10) * 10}
+                        </span>
+                      );
+                    })}
+                  <span>R$ {Math.ceil(infoIteration / 10) * 10}</span>
+                  <span>R$ 0</span>
+                </>
+              )}
             </div>
             <Progress categories={categories} />
           </div>
           <div className="flex flex-col items-center justify-between h-fit">
             {expensesCategories}
-            <Button className="mt-5">Imprimir</Button>
+            <Button
+              className="mt-5"
+              onClick={() => {
+                console.log(categories[1]);
+                create.mutate({ data: DEFAULT_CATEGORY_VALUES[0] });
+              }}
+            >
+              Imprimir
+            </Button>
           </div>
         </>
       )}

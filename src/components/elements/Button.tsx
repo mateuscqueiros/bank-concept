@@ -15,6 +15,7 @@ export function Button({
   className = "",
   children,
   tooltip,
+  ...rest
 }: ButtonProps) {
   let defaultStyle =
     "btn btn-sm py-3 px-10 h-fit min-h-11 rounded-full shadow-none border-none";
@@ -37,6 +38,7 @@ export function Button({
           tooltip && "tooltip",
         ])}
         data-tip={tooltip}
+        {...rest}
       >
         {content}
       </button>
@@ -52,6 +54,7 @@ export function Button({
             "text-primary bg-transparent hover:bg-primary hover:text-white",
             className,
           ])}
+          {...rest}
         >
           {content}
         </button>

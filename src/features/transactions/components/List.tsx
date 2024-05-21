@@ -1,7 +1,7 @@
 "use client";
-import { useTransactionStore } from "../stores";
-import { TransactionItem } from "./Item";
 import { useModalStore } from "@/stores";
+import { useTransactions } from "../api";
+import { TransactionItem } from "./Item";
 
 export type TransactionListProps = {
   title: string;
@@ -9,7 +9,7 @@ export type TransactionListProps = {
 
 export function TransactionList({ title }: TransactionListProps) {
   const openUpdateModal = useModalStore.use.openUpdate();
-  const transactions = useTransactionStore.use.transactions();
+  const { data: transactions } = useTransactions();
 
   return (
     <div>

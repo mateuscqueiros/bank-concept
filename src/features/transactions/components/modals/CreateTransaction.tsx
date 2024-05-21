@@ -1,17 +1,19 @@
 import { Modal } from "@/components/elements/Modal";
-import { TransactionFormType } from "../../types";
+import { getNextCategoryId, useCategories } from "@/features/categories";
 import { useModalStore } from "@/stores";
-import { uuid } from "@/lib/utils";
+import { useCreateTransaction } from "../../api";
+import { TransactionFormType } from "../../types";
 import { DefaultTransactionForm } from "../Form";
-import { useTransactionStore } from "../../stores";
 
 export function CreateTransactionModal() {
   const thisModalName = "createTransaction";
-  const createTransaction = useTransactionStore.use.create();
+  const { data: categories } = useCategories();
+  const createTransaction = useCreateTransaction();
   const close = useModalStore.use.close();
 
-  const onSubmit = (data: TransactionFormType) => {
-    createTransaction({ id: uuid(), ...data });
+  const onSubmit = (formValues: TransactionFormType) => {
+    const data = { id: getNextCategoryId(categories), ...formValues };
+    createTransaction.mutate({ data });
     close(thisModalName);
   };
 

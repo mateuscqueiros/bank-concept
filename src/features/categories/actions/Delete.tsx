@@ -1,16 +1,17 @@
 import { useModalStore } from "@/stores";
 import { IconTrash } from "@tabler/icons-react";
 import { toast } from "sonner";
-import { useCategoryStore } from "../stores";
+import { useCategories, useDeleteCategory } from "../api";
+import { CategoryType } from "../types";
 
 export type DeleteCategoryProps = {
-  itemId: number;
+  itemId: CategoryType["id"];
 };
 
 export function DeleteCategory({ itemId }: DeleteCategoryProps) {
   const closeModal = useModalStore.use.close();
-  const deleteCategory = useCategoryStore.use.delete();
-  const categories = useCategoryStore.use.categories();
+  const { data: categories } = useCategories();
+  const deleteCategory = useDeleteCategory();
 
   return (
     <div>
@@ -26,7 +27,7 @@ export function DeleteCategory({ itemId }: DeleteCategoryProps) {
               return;
             }
             closeModal("updateCategory");
-            deleteCategory(itemId);
+            deleteCategory.mutate({ id: itemId });
           }}
         >
           <IconTrash size={24} />

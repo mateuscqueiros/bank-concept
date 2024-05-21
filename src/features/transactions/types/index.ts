@@ -1,4 +1,5 @@
 'use client'
+import { CategoryType } from "@/features/categories";
 import { z } from "zod";
 
 export type TransactionType = {
@@ -6,7 +7,7 @@ export type TransactionType = {
   name: string;
   value: number;
   date: Date;
-  categoryId: number;
+  categoryId: CategoryType['id'];
   paymentType: string;
 };
 
@@ -18,7 +19,7 @@ export const transactionSchema = z.object({
       message: issue.code === "invalid_date" ? "Insira uma data válida" : defaultError,
     }),
   }),
-  categoryId: z.number({ message: 'A categoria é obrigatória' }),
+  categoryId: z.string({ message: 'A categoria é obrigatória' }),
   paymentType: z.string({ message: 'O tipo é obrigatório' })
 }).required();
 

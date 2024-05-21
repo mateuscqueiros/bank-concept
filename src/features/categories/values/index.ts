@@ -2,25 +2,25 @@ import { CategoryType } from "../types";
 
 export const DEFAULT_CATEGORY_VALUES: CategoryType[] = [
   {
-    id: 0,
+    id: '0',
     icon: "icon-vehicles",
     name: "Carro",
     color: "rose",
   },
   {
-    id: 1,
+    id: '1',
     icon: "icon-shirt",
     name: "Roupas",
     color: "sky",
   },
   {
-    id: 2,
+    id: '2',
     icon: "icon-kitchen",
     name: "Comida",
     color: "emerald",
   },
   {
-    id: 3,
+    id: '3',
     icon: "icon-shopping-cart",
     name: "Mercado",
     color: "amber",

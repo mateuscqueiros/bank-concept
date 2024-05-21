@@ -1,8 +1,9 @@
 import { LayoutContainer } from "@/components/layout";
-import "./globals.css";
+import { ApiProvider } from "@/lib/query-client";
 import type { Metadata } from "next";
-import "react-datepicker/dist/react-datepicker.css";
 import { Inter } from "next/font/google";
+import "react-datepicker/dist/react-datepicker.css";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -97,7 +98,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={inter.className}>
-        <LayoutContainer>{children}</LayoutContainer>
+        <ApiProvider>
+          <LayoutContainer>{children}</LayoutContainer>
+        </ApiProvider>
       </body>
     </html>
   );

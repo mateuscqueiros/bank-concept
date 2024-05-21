@@ -1,9 +1,9 @@
 import { Modal } from "@/components/elements/Modal";
 import { useModalStore } from "@/stores";
-import { CategoryFormType } from "../../types";
-import { DefaultCategoryForm } from "../Form";
 import { DeleteCategory } from "../../actions";
-import { useCategoryStore } from "../../stores";
+import { useCategories, useUpdateCategory } from "../../api";
+import { CategoryFormType, CategoryType } from "../../types";
+import { DefaultCategoryForm } from "../Form";
 
 export function UpdateCategoryModal() {
   const thisModalName = "updateCategory";
@@ -11,15 +11,18 @@ export function UpdateCategoryModal() {
     .modals()
     .find((m) => m.name === thisModalName);
 
-  const categories = useCategoryStore.use.categories();
-  const updateCategory = useCategoryStore.use.update();
+  const { data: categories } = useCategories();
+  const updateCategory = useUpdateCategory();
   const closeModal = useModalStore.use.close();
 
   const categoryData = categories.find((t) => t.id === thisModalState?.dataId);
 
   const onSubmit = (data: CategoryFormType) => {
     if (thisModalState && thisModalState.dataId !== null) {
-      updateCategory({ ...data }, thisModalState?.dataId as number);
+      updateCategory.mutate({
+        data,
+        id: thisModalState.dataId as CategoryType["id"],
+      });
     }
     closeModal(thisModalName);
   };
@@ -28,7 +31,9 @@ export function UpdateCategoryModal() {
     <Modal
       actions={
         thisModalState?.dataId !== null ? (
-          <DeleteCategory itemId={thisModalState?.dataId as number} />
+          <DeleteCategory
+            itemId={thisModalState?.dataId as CategoryType["id"]}
+          />
         ) : undefined
       }
       title="Transação"

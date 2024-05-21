@@ -1,7 +1,7 @@
 "use client";
 
 import { CategoryType, getCategoryItems } from "@/features/categories";
-import { TransactionType, useTransactionStore } from "@/features/transactions";
+import { TransactionType, useTransactions } from "@/features/transactions";
 import { cn } from "@/lib/utils";
 import { useLayoutEffect, useRef, useState } from "react";
 
@@ -11,7 +11,7 @@ type ProgressProps = {
 
 export function Progress({ categories }: ProgressProps) {
   let accSectionsHeight = 0;
-  const transactions = useTransactionStore.use.transactions();
+  const { data: transactions } = useTransactions();
 
   const totalExpenses = transactions.reduce(
     (acc: number, item: TransactionType) => acc + item.value,

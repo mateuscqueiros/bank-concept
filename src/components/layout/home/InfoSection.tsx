@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { ExpensesTab, ReleasesTab, TaxesTab } from "./tabs";
 import { Tabs } from "@/components/elements";
 import { inputStyles, selectStyles } from "@/components/form";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { ExpensesTab, ReleasesTab, TaxesTab } from "./tabs";
 
 const tabData = [
   {

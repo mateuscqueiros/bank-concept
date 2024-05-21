@@ -1,6 +1,6 @@
 import { useModalStore } from "@/stores";
 import { IconTrash } from "@tabler/icons-react";
-import { useTransactionStore } from "../stores";
+import { useDeleteTransaction } from "../api";
 
 export type DeleteTransactionProps = {
   itemId: string;
@@ -8,7 +8,7 @@ export type DeleteTransactionProps = {
 
 export function DeleteTransaction({ itemId }: DeleteTransactionProps) {
   const closeModal = useModalStore.use.close();
-  const deleteTransaction = useTransactionStore.use.delete();
+  const deleteTransaction = useDeleteTransaction();
   return (
     <div>
       <div className="tooltip" data-tip="Deletar Transação">
@@ -17,7 +17,7 @@ export function DeleteTransaction({ itemId }: DeleteTransactionProps) {
           className="flex items-center justify-center rounded-md btn-sm btn-square bg-transparent border-primary border-2 hover:bg-primary hover:border-transparent text-primary hover:text-white"
           onClick={() => {
             closeModal("updateTransaction");
-            deleteTransaction(itemId);
+            deleteTransaction.mutate({ id: itemId });
           }}
         >
           <IconTrash size={24} />

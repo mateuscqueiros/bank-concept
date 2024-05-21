@@ -17,7 +17,7 @@ import {
 import { CategoryType } from "../types";
 
 export function getCategoryItems(
-  categoryId: number,
+  categoryId: CategoryType["id"],
   transactions: TransactionType[],
 ) {
   return transactions.filter(
@@ -26,7 +26,7 @@ export function getCategoryItems(
 }
 
 export function getCategoryById(
-  categoryId: number,
+  categoryId: CategoryType["id"],
   categories: CategoryType[],
 ) {
   return categories.find((category) => category.id === categoryId);
@@ -63,12 +63,14 @@ export function getCategoryIcon(icon: string) {
   }
 }
 
-export function getNextCategoryId(categories: CategoryType[]) {
+export function getNextCategoryId(
+  categories: CategoryType[],
+): CategoryType["id"] {
   let latestId = 0;
 
   categories.forEach((category) =>
-    category.id > latestId ? (latestId = category.id) : null,
+    Number(category.id) > latestId ? (latestId = Number(category.id)) : null,
   );
 
-  return latestId + 1;
+  return String(latestId + 1);
 }

@@ -1,12 +1,12 @@
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormItem, inputStyles, selectStyles } from "@/components/form";
-import { NumericFormat } from "react-number-format";
-import ReactDatePicker from "react-datepicker";
 import { Button } from "@/components/elements";
+import { FormItem, inputStyles, selectStyles } from "@/components/form";
+import { useCategories } from "@/features/categories";
 import { PAYMENT_METHODS } from "@/values/data";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ReactDatePicker from "react-datepicker";
+import { Controller, useForm } from "react-hook-form";
+import { NumericFormat } from "react-number-format";
 import { TransactionFormType, transactionSchema } from "../types";
-import { useCategoryStore } from "@/features/categories";
 import { DEFAULT_TRANSACTION_FORM_VALUES } from "../values";
 
 type DefaultTransactionFormProps = {
@@ -19,7 +19,7 @@ export function DefaultTransactionForm({
   defaultValues,
   onSubmit,
 }: DefaultTransactionFormProps) {
-  const categories = useCategoryStore.use.categories();
+  const { data: categories } = useCategories();
 
   const {
     register,
@@ -27,10 +27,13 @@ export function DefaultTransactionForm({
     formState: { errors },
     control,
     reset,
+    watch,
   } = useForm<TransactionFormType>({
     resolver: zodResolver(transactionSchema),
     defaultValues: defaultValues || DEFAULT_TRANSACTION_FORM_VALUES,
   });
+
+  console.log(watch("categoryId"));
 
   return (
     <form
@@ -63,12 +66,7 @@ export function DefaultTransactionForm({
       </FormItem>
       <div className="flex gap-5">
         <FormItem label="Categoria" error={errors.categoryId}>
-          <select
-            className={selectStyles}
-            {...register("categoryId", {
-              valueAsNumber: true,
-            })}
-          >
+          <select className={selectStyles} {...register("categoryId")}>
             {categories.map((c) => (
               <option value={c.id} key={c.name}>
                 {c.name}

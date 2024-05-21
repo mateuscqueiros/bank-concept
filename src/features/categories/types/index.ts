@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export type CategoryType = {
-  id: number;
+  id: string;
   name: string;
   color: string;
   icon: string;
