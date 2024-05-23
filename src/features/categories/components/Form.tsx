@@ -1,7 +1,7 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormItem, inputStyles, selectStyles } from "@/components/form";
 import { Button } from "@/components/elements";
+import { FormItem, inputStyles, selectStyles } from "@/components/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { CategoryFormType, categorySchema } from "../types";
 import {
   CATEGORY_COLORS,
@@ -11,7 +11,7 @@ import {
 
 type DefaultCategoryFormProps = {
   defaultValues?: CategoryFormType;
-  onSubmit: (values: CategoryFormType) => void;
+  onSubmit?: (values: CategoryFormType) => void;
 };
 
 export function DefaultCategoryForm({
@@ -32,7 +32,7 @@ export function DefaultCategoryForm({
     <form
       onSubmit={handleSubmit((values) => {
         reset();
-        onSubmit(values);
+        onSubmit && onSubmit(values);
       })}
       className="pt-5 flex flex-col justify-between h-full"
     >

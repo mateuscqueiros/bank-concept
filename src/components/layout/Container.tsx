@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { ModalsContainer } from "../elements";
-import { Toaster } from "sonner";
 import { Navigation } from "./Navigation";
 
 type ContainerProps = {
@@ -15,7 +14,6 @@ export function LayoutContainer({ children }: ContainerProps) {
         {children}
       </main>
       <ModalsContainer />
-      <Toaster />
     </div>
   );
 }

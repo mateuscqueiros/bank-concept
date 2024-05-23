@@ -11,7 +11,7 @@ import { DEFAULT_TRANSACTION_FORM_VALUES } from "../values";
 
 type DefaultTransactionFormProps = {
   defaultValues?: TransactionFormType;
-  onSubmit: (values: TransactionFormType) => void;
+  onSubmit?: (values: TransactionFormType) => void;
   modalName?: string;
 };
 
@@ -33,15 +33,11 @@ export function DefaultTransactionForm({
     defaultValues: defaultValues || DEFAULT_TRANSACTION_FORM_VALUES,
   });
 
-  console.log(watch("date"));
-  console.log(typeof new Date());
-  console.log(typeof watch("date"));
-
   return (
     <form
       onSubmit={handleSubmit((values) => {
         reset();
-        onSubmit(values);
+        onSubmit && onSubmit(values);
       })}
       className="pt-5 flex flex-col justify-between h-full"
     >

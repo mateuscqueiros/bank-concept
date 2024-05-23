@@ -19,10 +19,7 @@ type CreateCategoryMutationType = {
 
 export function useCreateCategory() {
   return useMutation({
-    mutationFn: ({ data }: CreateCategoryMutationType) => {
-      console.log(data)
-      return createCategory(data)
-    },
+    mutationFn: ({ data }: CreateCategoryMutationType) => createCategory(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['categories'],
