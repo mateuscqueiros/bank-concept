@@ -2,10 +2,9 @@ import { Button, Progress } from "@/components/elements";
 import { useTransactions } from "@/features/transactions";
 import { cn } from "@/lib/utils";
 import { useModalStore } from "@/stores";
-import { useCategories, useCreateCategory } from "../api";
+import { useCategories } from "../api";
 import { getCategoryIcon, getCategoryItems } from "../lib";
 import { CategoryType } from "../types";
-import { DEFAULT_CATEGORY_VALUES } from "../values";
 
 type CategoryProps = {
   totalExpenses: number;
@@ -61,8 +60,6 @@ export function CategoriesProgress({ className }: { className?: string }) {
       ),
   );
 
-  const create = useCreateCategory();
-
   return (
     <div
       className={cn([
@@ -96,15 +93,7 @@ export function CategoriesProgress({ className }: { className?: string }) {
           </div>
           <div className="flex flex-col items-center justify-between h-fit">
             {expensesCategories}
-            <Button
-              className="mt-5"
-              onClick={() => {
-                console.log(categories[1]);
-                create.mutate({ data: DEFAULT_CATEGORY_VALUES[0] });
-              }}
-            >
-              Imprimir
-            </Button>
+            <Button className="mt-5">Imprimir</Button>
           </div>
         </>
       )}

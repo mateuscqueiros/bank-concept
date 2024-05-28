@@ -19,4 +19,3 @@ export function getAuthorizationHeaders() {
   }
   return config
 }
-

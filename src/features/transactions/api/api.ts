@@ -8,7 +8,7 @@ import { createTransaction, deleteTransaction, getTransactions, updateTransactio
 export function useTransactions() {
   return useQuery({
     queryKey: ["transactions"],
-    queryFn: getTransactions,
+    queryFn: async () => getTransactions().then(res => res.data),
     initialData: []
   })
 }

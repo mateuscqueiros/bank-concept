@@ -1,19 +1,19 @@
 
 import { axios } from "@/lib/api-client";
-import { LoginFormType, RegisterFormType, UserResponseType, UserType } from "../types";
+import { LoginFormType, RegisterFormType, TokenResponseType, UserType } from "../types";
 import { storage } from "../lib";
 import { toast } from "sonner";
 
-export async function getUser(): Promise<UserType | undefined> {
-  return axios.get('/users/me').then(res => res.data)
+export async function getUser() {
+  return axios.get<UserType>('/users/me')
 
 }
-export async function postUser(data: RegisterFormType): Promise<UserResponseType> {
-  return axios.post('/register', data).then(res => res.data)
+export async function postUser(data: RegisterFormType) {
+  return axios.post<TokenResponseType>('/register', data)
 }
 
-export async function loginWithEmailAndPassword(data: LoginFormType): Promise<UserResponseType> {
-  return axios.post('/login', data).then(res => res.data)
+export async function loginWithEmailAndPassword(data: LoginFormType) {
+  return axios.post<TokenResponseType>('/login', data)
 }
 
 export function logout() {

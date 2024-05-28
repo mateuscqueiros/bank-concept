@@ -24,8 +24,6 @@ const categoryStoreBase = create<CategoryStoreType>()((set) => ({
     set((state) => {
       const other = state.categories.filter(c => c.id !== id)
       toast.success('Transação atualizada')
-      const nState = { id, ...values }
-      console.log(nState)
       return { ...state, categories: [...other, { id, ...values }] }
     }),
   delete: (id) => {

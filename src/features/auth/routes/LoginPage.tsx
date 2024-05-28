@@ -1,16 +1,24 @@
 "use client";
 
+import { useTransactions } from "@/features/transactions";
 import { useLoginUser, useUser } from "../api";
 import { LoginForm } from "../components";
+import { storage } from "../lib";
 import { LoginFormType } from "../types";
 
 export function LoginPage() {
-  const { mutate: loginUser } = useLoginUser();
-  const { data: user } = useUser();
-  console.log(user);
+  const { mutateAsync: loginUser } = useLoginUser();
+
+  const { data: transactions } = useTransactions();
+  const { data: users } = useUser();
+
+  console.log("Login transactions: ", transactions);
+  console.log("Login user: ", users);
 
   const onSubmit = (values: LoginFormType) => {
-    loginUser(values);
+    loginUser(values).then((res) => {
+      storage.setToken(res.data.accessToken);
+    });
   };
 
   return (

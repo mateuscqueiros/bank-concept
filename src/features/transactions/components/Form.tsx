@@ -93,7 +93,6 @@ export function DefaultTransactionForm({
               placeholderText="Data"
               selected={new Date(field.value)}
               onChange={(date: any) => {
-                console.log(typeof date);
                 field.onChange(new Date(date));
               }}
             />

@@ -2,26 +2,27 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getUser, loginWithEmailAndPassword, postUser } from "./api";
 import { queryClient } from "@/lib/query-client";
 import { toast } from "sonner";
-import { storage } from "../lib";
+import { RegisterFormType } from "../types";
 
 export function useUser() {
   return useQuery({
     queryKey: ["user"],
-    queryFn: getUser
+    queryFn: () => getUser().then(res => res.data),
   })
 }
 
 export function useCreateUser() {
   return useMutation({
-    mutationKey: ["user-create"],
-    mutationFn: postUser,
-    onSuccess: (data) => {
-      storage.setToken(data.accessToken);
+    mutationKey: ["user-register"],
+    mutationFn: (data: RegisterFormType) => postUser(data).then(res => res.data),
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
       toast.success("Usuário criado e logado!")
     },
     onError: (error: any) => {
-      toast.error(error.response.data)
+      if (error.response.data) {
+        toast.error(error.response.data)
+      }
     }
   })
 }
@@ -30,12 +31,13 @@ export function useLoginUser() {
   return useMutation({
     mutationKey: ["user-login"],
     mutationFn: loginWithEmailAndPassword,
-    onSuccess: (data) => {
-      console.log(data);
-      toast.success("Bem-vindo de volta, " + data.user.firstName);
+    onSuccess: (res) => {
+      toast.success("Bem-vindo de volta, " + res.data.user.name);
     },
     onError: (error: any) => {
-      toast.error(error.response.data)
+      if (error.response.data) {
+        toast.error(error.response.data)
+      }
     }
   })
 }

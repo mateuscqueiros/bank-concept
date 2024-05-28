@@ -30,11 +30,8 @@ export function RegisterForm({ initialValues, onSubmit }: RegisterFormProps) {
       })}
       className="pt-5 flex flex-col justify-between"
     >
-      <FormItem label="Nome" error={errors.firstName}>
-        <input type="text" className={inputStyles} {...register("firstName")} />
-      </FormItem>
-      <FormItem label="Sobrenome" error={errors.lastName}>
-        <input type="text" className={inputStyles} {...register("lastName")} />
+      <FormItem label="Nome" error={errors.name}>
+        <input type="text" className={inputStyles} {...register("name")} />
       </FormItem>
       <FormItem label="Email" error={errors.email}>
         <input type="text" className={inputStyles} {...register("email")} />
