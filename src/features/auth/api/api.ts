@@ -6,8 +6,8 @@ import { toast } from "sonner";
 
 export async function getUser() {
   return axios.get<UserType>('/users/me')
-
 }
+
 export async function postUser(data: RegisterFormType) {
   return axios.post<TokenResponseType>('/register', data)
 }

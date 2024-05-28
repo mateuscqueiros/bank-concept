@@ -32,6 +32,7 @@ export function useLoginUser() {
     mutationKey: ["user-login"],
     mutationFn: loginWithEmailAndPassword,
     onSuccess: (res) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] })
       toast.success("Bem-vindo de volta, " + res.data.user.name);
     },
     onError: (error: any) => {
