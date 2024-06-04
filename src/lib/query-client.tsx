@@ -7,7 +7,7 @@ import React from "react";
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 0,
+      retry: false,
     },
   },
 });

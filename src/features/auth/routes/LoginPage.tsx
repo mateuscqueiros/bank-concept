@@ -1,24 +1,24 @@
 "use client";
 
 import { useTransactions } from "@/features/transactions";
+import { useRouter } from "next/navigation";
 import { useLoginUser, useUser } from "../api";
 import { LoginForm } from "../components";
-import { storage } from "../lib";
 import { LoginFormType } from "../types";
 
 export function LoginPage() {
   const { mutateAsync: loginUser } = useLoginUser();
 
-  const { data: transactions } = useTransactions();
-  const { data: users } = useUser();
+  const { data: user } = useUser();
 
-  console.log("Login transactions: ", transactions);
-  console.log("Login user: ", users);
+  console.log("Login user: ", user);
 
   const onSubmit = (values: LoginFormType) => {
-    loginUser(values).then((res) => {
-      storage.setToken(res.data.accessToken);
-    });
+    loginUser(values)
+      .then((res) => {
+        console.log("sucesso", res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

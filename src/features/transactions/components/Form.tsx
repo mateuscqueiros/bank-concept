@@ -20,6 +20,10 @@ export function DefaultTransactionForm({
   onSubmit,
 }: DefaultTransactionFormProps) {
   const { data: categories } = useCategories();
+  const initialValues = defaultValues && {
+    ...defaultValues,
+    date: new Date(defaultValues.date),
+  };
 
   const {
     register,
@@ -27,10 +31,9 @@ export function DefaultTransactionForm({
     formState: { errors },
     control,
     reset,
-    watch,
   } = useForm<TransactionFormType>({
     resolver: zodResolver(transactionSchema),
-    defaultValues: defaultValues || DEFAULT_TRANSACTION_FORM_VALUES,
+    defaultValues: initialValues || DEFAULT_TRANSACTION_FORM_VALUES,
   });
 
   return (
@@ -66,7 +69,7 @@ export function DefaultTransactionForm({
         <FormItem label="Categoria" error={errors.categoryId}>
           <select className={selectStyles} {...register("categoryId")}>
             {categories.map((c) => (
-              <option value={c.id} key={c.name}>
+              <option value={c.id} key={c.id}>
                 {c.name}
               </option>
             ))}

@@ -14,7 +14,7 @@ export const registerFormSchema = z.object({
 }).required();
 
 export type RegisterFormType = z.infer<typeof registerFormSchema>;
-export type UserType = RegisterFormType
+export type UserType = RegisterFormType & { id: number }
 
 export type TokenResponseType = {
   accessToken: string

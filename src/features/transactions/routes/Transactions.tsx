@@ -3,7 +3,6 @@
 import { AddCategory, CategoriesProgress } from "@/features/categories";
 import { TransactionList, useTransactions } from "@/features/transactions";
 import { AddTransaction } from "@/features/transactions/actions/Add";
-import { isToday, isYesterday } from "date-fns";
 
 export function TransactionsPage() {
   const { data: transactions } = useTransactions();
@@ -12,15 +11,6 @@ export function TransactionsPage() {
   const totalExpenses = transactions.reduce(
     (acc, transaction) => transaction.value + acc,
     0,
-  );
-
-  const today = transactions.filter((transaction) => isToday(transaction.date));
-  const yesterday = transactions.filter((transaction) =>
-    isYesterday(transaction.date),
-  );
-  const previous = transactions.filter(
-    (transaction) =>
-      !isYesterday(transaction.date) && !isToday(transaction.date),
   );
 
   return (
@@ -47,11 +37,7 @@ export function TransactionsPage() {
         <CategoriesProgress className="justify-center max-w-[400px] flex-wrap gap-x-20 gap-y-10" />
       </div>
       <div className="flex flex-col max-w-[600px] w-full mx-auto gap-10">
-        {today.length > 0 && <TransactionList title="Hoje" />}
-        {yesterday.length > 0 && <TransactionList title="Ontem" />}
-        {previous.length > 0 && (
-          <TransactionList title={(today || yesterday) && "Anterior"} />
-        )}
+        {transactions.length > 0 && <TransactionList title="Todas" />}
       </div>
     </div>
   );

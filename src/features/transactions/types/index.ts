@@ -9,6 +9,7 @@ export type TransactionType = {
   date: Date;
   categoryId: CategoryType['id'];
   paymentType: string;
+  userId: number
 };
 
 export const transactionSchema = z.object({

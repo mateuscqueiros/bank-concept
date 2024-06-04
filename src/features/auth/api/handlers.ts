@@ -1,8 +1,12 @@
+'use client'
+
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getUser, loginWithEmailAndPassword, postUser } from "./api";
 import { queryClient } from "@/lib/query-client";
 import { toast } from "sonner";
 import { RegisterFormType } from "../types";
+import { storage } from "../lib";
+import { useRouter } from "next/navigation";
 
 export function useUser() {
   return useQuery({
@@ -28,11 +32,14 @@ export function useCreateUser() {
 }
 
 export function useLoginUser() {
+  const router = useRouter()
   return useMutation({
     mutationKey: ["user-login"],
     mutationFn: loginWithEmailAndPassword,
     onSuccess: (res) => {
+      storage.setToken(res.data.accessToken);
       queryClient.invalidateQueries({ queryKey: ['user'] })
+      router.push('/')
       toast.success("Bem-vindo de volta, " + res.data.user.name);
     },
     onError: (error: any) => {

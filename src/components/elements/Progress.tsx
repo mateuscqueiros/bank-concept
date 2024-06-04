@@ -46,7 +46,7 @@ export function Progress({ categories }: ProgressProps) {
     accSectionsHeight += (totalCategoryExpenses / totalExpenses) * parentHeight;
     return (
       <div
-        key={`section-item-${category.name}`}
+        key={`section-item-${category.id}`}
         style={{ height, zIndex }}
         className={cn([`absolute bottom-0 w-full rounded-full`, bgColor])}
       ></div>

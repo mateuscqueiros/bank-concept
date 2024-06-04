@@ -5,6 +5,7 @@ export type CategoryType = {
   name: string;
   color: string;
   icon: string;
+  userId: string
 };
 
 export const categorySchema = z.object({

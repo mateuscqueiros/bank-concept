@@ -1,3 +1,4 @@
+"use client";
 import { Button, CreditCard } from "@/components/elements";
 import { HomeInfoSection } from "@/components/layout";
 import { TransactionList } from "@/features/transactions/components/List";

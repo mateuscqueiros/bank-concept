@@ -8,7 +8,8 @@ import { createTransaction, deleteTransaction, getTransactions, updateTransactio
 export function useTransactions() {
   return useQuery({
     queryKey: ["transactions"],
-    queryFn: async () => getTransactions().then(res => res.data),
+    queryFn: () => getTransactions().then(res => res.data),
+    retry: 3,
     initialData: []
   })
 }
@@ -20,11 +21,8 @@ type CreateTransactionMutationType = {
 export function useCreateTransaction() {
   return useMutation({
     mutationFn: ({ data }: CreateTransactionMutationType) => createTransaction(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['transactions'],
-        exact: true
-      })
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ['transactions'], exact: true })
     }
   })
 }
@@ -39,11 +37,8 @@ export function useUpdateTransaction() {
     mutationFn: ({
       id, data
     }: UpdateTransactionMutationType) => updateTransaction(id, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['transactions'],
-        exact: true
-      })
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ['transactions'], exact: true })
     }
   })
 }
@@ -55,11 +50,8 @@ type DeleteTransactionMutationType = {
 export function useDeleteTransaction() {
   return useMutation({
     mutationFn: ({ id }: DeleteTransactionMutationType) => deleteTransaction(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['transactions'],
-        exact: true
-      })
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ['transactions'], exact: true })
     }
   })
 }

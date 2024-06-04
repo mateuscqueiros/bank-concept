@@ -17,7 +17,9 @@ export function DeleteTransaction({ itemId }: DeleteTransactionProps) {
           className="flex items-center justify-center rounded-md btn-sm btn-square bg-transparent border-primary border-2 hover:bg-primary hover:border-transparent text-primary hover:text-white"
           onClick={() => {
             closeModal("updateTransaction");
-            deleteTransaction.mutate({ id: itemId });
+            deleteTransaction
+              .mutateAsync({ id: itemId })
+              .catch((err) => console.log("delete err", err));
           }}
         >
           <IconTrash size={24} />

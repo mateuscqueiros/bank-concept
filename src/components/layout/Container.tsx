@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import { ModalsContainer } from "../elements";
 import { Navigation } from "./Navigation";

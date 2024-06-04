@@ -8,7 +8,7 @@ import { createCategory, deleteCategory, getCategories, updateCategory } from ".
 export function useCategories() {
   return useQuery({
     queryKey: ["categories"],
-    queryFn: getCategories,
+    queryFn: () => getCategories().then(res => res.data),
     initialData: []
   })
 }

@@ -3,6 +3,7 @@
 import { Button } from "@/components/elements";
 import { FormItem, inputStyles } from "@/components/form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { RegisterFormType, registerFormSchema } from "../types";
 import { DEFAULT_REGISTER_FORM_VALUES } from "../values";
@@ -46,6 +47,12 @@ export function RegisterForm({ initialValues, onSubmit }: RegisterFormProps) {
       <Button className="btn-primary w-full" type="submit">
         Salvar
       </Button>
+      <span className="flex justify-center text-sm mt-3">
+        Já tem uma conta?&nbsp;
+        <Link href="/login" className="text-primary hover:underline">
+          Faça login
+        </Link>
+      </span>
     </form>
   );
 }
