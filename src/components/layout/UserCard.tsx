@@ -15,7 +15,7 @@ export function UserCard() {
             src="https://doodleipsum.com/700/avatar"
             alt="Usuário"
           />
-          <h3 className="ml-5 text-lg font-bold">Mateus Queirós</h3>
+          <h3 className="ml-5 text-lg font-bold">{user.name}</h3>
         </>
       ) : (
         <Link href="/login" className="underline hover:text-slate-500">

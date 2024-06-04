@@ -9,6 +9,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 200,
     categoryId: '0',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -17,6 +18,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 300,
     categoryId: '1',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -25,6 +27,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 400,
     categoryId: '1',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -33,6 +36,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 50,
     categoryId: '2',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -41,6 +45,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 150,
     categoryId: '0',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -49,6 +54,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 200,
     categoryId: '2',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -57,6 +63,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 230,
     categoryId: '3',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -65,6 +72,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 230,
     categoryId: '3',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -73,6 +81,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 230,
     categoryId: '3',
     paymentType: "pix",
+    userId: 1
   },
   {
     id: uuid(),
@@ -81,6 +90,7 @@ export const DEFAULT_TRANSACTION_VALUES: TransactionType[] = [
     value: 230,
     categoryId: '3',
     paymentType: "pix",
+    userId: 1
   },
 ];
 

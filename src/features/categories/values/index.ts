@@ -6,24 +6,28 @@ export const DEFAULT_CATEGORY_VALUES: CategoryType[] = [
     icon: "icon-vehicles",
     name: "Carro",
     color: "rose",
+    userId: 1
   },
   {
     id: '1',
     icon: "icon-shirt",
     name: "Roupas",
     color: "sky",
+    userId: 1
   },
   {
     id: '2',
     icon: "icon-kitchen",
     name: "Comida",
     color: "emerald",
+    userId: 1
   },
   {
     id: '3',
     icon: "icon-shopping-cart",
     name: "Mercado",
     color: "amber",
+    userId: 1
   },
 ];
 
