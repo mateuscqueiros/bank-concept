@@ -1,27 +1,35 @@
 "use client";
 import { Button, CreditCard } from "@/components/elements";
 import { HomeInfoSection } from "@/components/layout";
+import { useUser } from "@/features/auth";
 import { TransactionList } from "@/features/transactions/components/List";
 import { IconArrowRight, IconInfoCircle } from "@tabler/icons-react";
 
 export default function Home() {
+  const { data: user } = useUser();
   return (
     <div className="flex flex-row w-full xl:max-w-[calc(50%-60px)]">
       <div className="flex flex-col flex-1 p-6 pt-10 h-full">
         <div className="flex flex-col items-start justify-start mb-20">
-          <h1 className="text-3xl font-bold">Olá Mateus!</h1>
-          <span className="max-w-[320px]">
-            Bem-vindo de volta. Aqui está uma visão geral da sua conta.
-          </span>
+          {user && (
+            <>
+              <h1 className="text-3xl font-bold">Olá {user.name}!</h1>
+              <span className="max-w-[320px]">
+                Bem-vindo de volta. Aqui está uma visão geral da sua conta.
+              </span>
+            </>
+          )}
         </div>
         <div>
           <h2 className="text-2xl font-bold mb-4">Cartão de Crédito</h2>
           <div className="flex flex-row flex-wrap gap-x-10 gap-y-5 items-center w-full">
-            <CreditCard
-              name="Mateus Queirós"
-              logo="/icons/logo-bnb.svg"
-              brand="/icons/mastercard.svg"
-            />
+            {user && (
+              <CreditCard
+                name={user.name}
+                logo="/icons/logo-bnb.svg"
+                brand="/icons/mastercard.svg"
+              />
+            )}
             <div className="max-w-[200px]">
               <div className="flex flex-row items-center">
                 <IconInfoCircle />
